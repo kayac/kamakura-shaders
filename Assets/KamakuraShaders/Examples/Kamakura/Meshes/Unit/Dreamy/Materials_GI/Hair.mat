@@ -1,0 +1,202 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Hair
+  m_Shader: {fileID: 4800000, guid: c193f53d99e244e9db666eda7a7e0d56, type: 3}
+  m_ShaderKeywords: KAMAKURA_FILTER_ON KAMAKURA_HATCH_ON KAMAKURA_OUTLINE_ON _EMISSION
+    _OUTLINEWRITEZ_ON _RIMBLENDINGMODE_ADDITIVE
+  m_LightmapFlags: 1
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 2000
+  stringTagMap:
+    RenderType: Opaque
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _HairSpecShift:
+        m_Texture: {fileID: 2800000, guid: c3859772ceb250d45bfb13be509ed6d2, type: 3}
+        m_Scale: {x: 10, y: 5}
+        m_Offset: {x: 0, y: 0}
+    - _HairStrandTex:
+        m_Texture: {fileID: 2800000, guid: d23115ce118bef247a0b40f3e806058a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _HatchMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _HatchTex:
+        m_Texture: {fileID: 2800000, guid: 3a8cc6ff421324dd9acaeff3f2fdeaea, type: 3}
+        m_Scale: {x: 10, y: 10}
+        m_Offset: {x: 0, y: 0}
+    - _LightRampTex:
+        m_Texture: {fileID: 28090700920025494, guid: c278a76157fa78f4b8b20b01e8a7198d,
+          type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: c4b9fd6c60446de4ea0d102be5ab2f8a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _RimNoiseTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ShadowModTex:
+        m_Texture: {fileID: 2800000, guid: f23e74e4cb4acb141866c588840ba4b6, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecularMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _AmbientIntensity: 0.5
+    - _AmbientUnitySHIntensity: 1
+    - _AmbientUseCubeColor: 0
+    - _BlendMode: 0
+    - _BumpScale: 1
+    - _CubeColorUseLocalSpace: 0
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _EnableCubeColor: 0
+    - _EnableFilter: 1
+    - _EnableHatch: 1
+    - _EnableOutline: 1
+    - _EnableRim: 0
+    - _EnableShadowMod: 0
+    - _FilterBrightness: 1
+    - _FilterContrast: -0.8
+    - _FilterContrastMidPoint: 0.5
+    - _FilterHue: 0
+    - _FilterSaturation: 0
+    - _GlobalLightIntensity: 1
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _HatchIntensity: 0.8
+    - _HatchOffset: -0.46
+    - _HatchRangeStretch: 1.46
+    - _HatchRotCos: 1
+    - _HatchRotSin: 0
+    - _HatchRotation: 0
+    - _HatchScreenSpace: 0
+    - _LightRampOffset: 1
+    - _LightRampPresetsOffset: 0.7
+    - _LightRampUseGVertexColor: 0
+    - _LocalLightIntensity: 1
+    - _LocalLightVecAsMain: 0
+    - _Metallic: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _OutlineBlendColorTexture: 0
+    - _OutlineCameraDistanceAdaptRate: 1
+    - _OutlineNormalTweak: 0
+    - _OutlineSize: 0.0005
+    - _OutlineUseRVertexColor: 0
+    - _OutlineWriteZ: 1
+    - _Parallax: 0.02
+    - _PrimaryShift: 0.9
+    - _PrimarySpecularIntensity: 1
+    - _PrimarySpecularShadowAffection: 1
+    - _PrimarySpecularSmoothness: 0.05
+    - _RimBlendingMode: 0
+    - _RimIntensity: 0.3
+    - _RimSize: 0.3
+    - _RimSoftness: 0.3
+    - _RimUseCubeColor: 0
+    - _SecondaryShift: 0.9
+    - _SecondarySpecularIntensity: 1
+    - _SecondarySpecularShadowAffection: 0.5
+    - _SecondarySpecularSmoothness: 1
+    - _ShadowAffectSpecular: 0
+    - _ShadowModIntensity: 1
+    - _ShadowModUseFilter: 0
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SpecularIntensity: 1
+    - _SpecularPower1: 500
+    - _SpecularPower2: 10
+    - _SpecularShiftIntensity: 1
+    - _SpecularSmoothness: 0.463
+    - _SrcBlend: 1
+    - _StencilComp: 6
+    - _StencilFail: 0
+    - _StencilPass: 0
+    - _StencilRef: 1
+    - _StencilZFail: 0
+    - _StrandTexIntensity: 1
+    - _UVSec: 0
+    - _UsingRightMirroredMesh: 0
+    - _ZWrite: 1
+    m_Colors:
+    - _AmbientColor: {r: 0, g: 0, b: 0, a: 0}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _CubeColor0: {r: 1, g: 1, b: 1, a: 1}
+    - _CubeColor1: {r: 1, g: 1, b: 1, a: 1}
+    - _CubeColor2: {r: 1, g: 1, b: 1, a: 1}
+    - _CubeColor3: {r: 1, g: 1, b: 1, a: 1}
+    - _CubeColor4: {r: 1, g: 1, b: 1, a: 1}
+    - _CubeColor5: {r: 1, g: 1, b: 1, a: 1}
+    - _CubeColorLocalSpaceMatrixRow0: {r: 1, g: 0, b: 0, a: 0}
+    - _CubeColorLocalSpaceMatrixRow1: {r: 0, g: 1, b: 0, a: 0}
+    - _CubeColorLocalSpaceMatrixRow2: {r: 0, g: 0, b: 1, a: 0}
+    - _CubeNormal0: {r: 0, g: 1, b: 0, a: 0}
+    - _CubeNormal1: {r: 1, g: 0, b: 0, a: 0}
+    - _CubeNormal2: {r: 0, g: 0, b: 1, a: 0}
+    - _CubeNormal3: {r: -1, g: 0, b: 0, a: 0}
+    - _CubeNormal4: {r: 0, g: 0, b: -1, a: 0}
+    - _CubeNormal5: {r: 0, g: -1, b: 0, a: 0}
+    - _DiffuseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Hatch1Color: {r: 0.28676465, g: 0.28676465, b: 0.28676465, a: 1}
+    - _Hatch2Color: {r: 0.13235292, g: 0.13235292, b: 0.13235292, a: 1}
+    - _Hatch3Color: {r: 0, g: 0, b: 0, a: 1}
+    - _LocalLightColor: {r: 0, g: 0, b: 0, a: 1}
+    - _LocalLightVec: {r: 1, g: 0, b: 0, a: 0}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _RimColor: {r: 1, g: 1, b: 1, a: 1}
+    - _ShaderVersion: {r: 0, g: 8, b: 5, a: 0}
+    - _ShadowModColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SpecularColor1: {r: 0.2205882, g: 0.2205882, b: 0.2205882, a: 1}
+    - _SpecularColor2: {r: 0.29411763, g: 0.29411763, b: 0.29411763, a: 1}

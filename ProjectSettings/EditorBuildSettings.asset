@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/KamakuraShaders/Examples/Kamakura/Scenes/DreamyAnimeScene.unity
+    guid: 066549423ea47884485e6e956b6a242a
+  - enabled: 1
+    path: Assets/KamakuraShaders/Examples/Kamakura/Scenes/DreamyCubeColorGlobalScene.unity
+    guid: 9b96622ef66c8e9419e9ce7d783a3bb5
+  - enabled: 1
+    path: Assets/KamakuraShaders/Examples/Kamakura/Scenes/DreamyCubeColorLocalScene.unity
+    guid: cc5561c155a173e4f9738837ab17d282
+  - enabled: 1
+    path: Assets/KamakuraShaders/Examples/Kamakura/Scenes/DreamyGIScene.unity
+    guid: e6a966aa3ed66dd4386d950e0f1eb274
+  - enabled: 1
+    path: Assets/KamakuraShaders/Examples/Kamakura/Scenes/DreamyHatchScene.unity
+    guid: 00cae6821ee5bc34e98d2894119456e6
+  - enabled: 1
+    path: Assets/KamakuraShaders/Examples/Kamakura/Scenes/DreamyLightScene.unity
+    guid: f0e2f927dbc421344bf3143906cbe66b
+  - enabled: 1
+    path: Assets/KamakuraShaders/Examples/Kamakura/Scenes/DreamyLocalLightScene.unity
+    guid: 45f496b631112f141b61a8eeb32ff814
+  - enabled: 1
+    path: Assets/KamakuraShaders/Examples/Kamakura/Scenes/DreamyPaintScene.unity
+    guid: a55d60c9e6264754098fc5391147882d
+  - enabled: 1
+    path: Assets/KamakuraShaders/Examples/Kamakura/Scenes/DreamyWaterColorScene.unity
+    guid: 5b20b344779577e41a51a3adc3eba660

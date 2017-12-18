@@ -1,0 +1,27 @@
+[Ll]ibrary/
+[Oo]bj/
+[Tt]emp/
+
+error.log
+
+*.sln
+*.userprefs
+*.csproj
+*.pidb
+*.unityproj
+*.suo
+
+.DS_Store
+Thumbs.db
+
+# avoid mutibyte filenames
+*[! -~]*
+
+.metadata
+.svn
+
+.envrc
+.ruby-version
+Gemfile.lock
+config_local.yml
+

@@ -1,0 +1,218 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b15318ab8e3b64d1bb37cb7e1f76be0d, type: 3}
+  m_Name: LightRamp
+  m_EditorClassIdentifier: 
+  width: 128
+  gradients:
+  - serializedVersion: 2
+    key0: {r: 0, g: 0, b: 0, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 32768
+    ctime1: 65535
+    ctime2: 39128
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 1
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  - serializedVersion: 2
+    key0: {r: 0, g: 0, b: 0, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 26214
+    ctime1: 39321
+    ctime2: 39128
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  - serializedVersion: 2
+    key0: {r: 0, g: 0, b: 0, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 19661
+    ctime1: 45875
+    ctime2: 39128
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  - serializedVersion: 2
+    key0: {r: 0, g: 0, b: 0, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 13107
+    ctime1: 52428
+    ctime2: 39128
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  - serializedVersion: 2
+    key0: {r: 0, g: 0, b: 0, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 6554
+    ctime1: 58982
+    ctime2: 39128
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  - serializedVersion: 2
+    key0: {r: 0, g: 0, b: 0, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 39128
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+--- !u!28 &28090700920025494
+Texture2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Ramp Texture
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  serializedVersion: 2
+  m_Width: 128
+  m_Height: 6
+  m_CompleteImageSize: 2304
+  m_TextureFormat: 3
+  m_MipCount: 1
+  m_IsReadable: 1
+  m_AlphaIsTransparency: 0
+  m_ImageCount: 1
+  m_TextureDimension: 2
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_LightmapFormat: 0
+  m_ColorSpace: 1
+  image data: 2304
+  _typelessdata: 0000000202020404040606060808080a0a0a0c0c0c0e0e0e1010101212121414141616161818181a1a1a1c1c1c1e1e1e2020202222222424242626262828282a2a2a2c2c2c2e2e2e3030303232323434343636363838383a3a3a3c3c3c3e3e3e4040404242424444444646464848484a4a4a4c4c4c4e4e4e5050505252525454545656565858585a5a5a5c5c5c5e5e5e6060606262626464646666666868686a6a6a6c6c6c6e6e6e7070707272727474747676767878787a7a7a7c7c7c7e7e7e8181818383838585858787878989898b8b8b8d8d8d8f8f8f9191919393939595959797979999999b9b9b9d9d9d9f9f9fa1a1a1a3a3a3a5a5a5a7a7a7a9a9a9abababadadadafafafb1b1b1b3b3b3b5b5b5b7b7b7b9b9b9bbbbbbbdbdbdbfbfbfc1c1c1c3c3c3c5c5c5c7c7c7c9c9c9cbcbcbcdcdcdcfcfcfd1d1d1d3d3d3d5d5d5d7d7d7d9d9d9dbdbdbdddddddfdfdfe1e1e1e3e3e3e5e5e5e7e7e7e9e9e9ebebebedededefefeff1f1f1f3f3f3f5f5f5f7f7f7f9f9f9fbfbfbfdfdfdffffff0000000000000000000000000000000000000000000000000000000000000000000000000000000101010303030606060808080b0b0b0d0d0d1010101212121515151717171a1a1a1c1c1c1f1f1f2121212424242626262929292b2b2b2e2e2e3030303333333535353838383a3a3a3d3d3d3f3f3f4242424545454747474a4a4a4c4c4c4f4f4f5151515454545656565959595b5b5b5e5e5e6060606363636565656868686a6a6a6d6d6d6f6f6f7272727474747777777979797c7c7c7e7e7e8181818383838686868888888b8b8b8d8d8d9090909292929595959797979a9a9a9c9c9c9f9f9fa1a1a1a4a4a4a6a6a6a9a9a9abababaeaeaeb0b0b0b3b3b3b5b5b5b8b8b8babababdbdbdbfbfbfc2c2c2c5c5c5c7c7c7cacacacccccccfcfcfd1d1d1d4d4d4d6d6d6d9d9d9dbdbdbdededee0e0e0e3e3e3e5e5e5e8e8e8eaeaeaedededefefeff2f2f2f4f4f4f7f7f7f9f9f9fcfcfcfefefeffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000202020505050909090c0c0c0f0f0f1313131616161919191d1d1d2020202323232727272a2a2a2e2e2e3131313434343838383b3b3b3e3e3e4242424545454848484c4c4c4f4f4f5252525656565959595c5c5c6060606363636666666a6a6a6d6d6d7070707474747777777a7a7a7e7e7e8181818585858888888b8b8b8f8f8f9292929595959999999c9c9c9f9f9fa3a3a3a6a6a6a9a9a9adadadb0b0b0b3b3b3b7b7b7babababdbdbdc1c1c1c4c4c4c7c7c7cbcbcbcececed1d1d1d5d5d5d8d8d8dcdcdcdfdfdfe2e2e2e6e6e6e9e9e9ecececf0f0f0f3f3f3f6f6f6fafafafdfdfdffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000505050a0a0a0f0f0f1414141919191e1e1e2323232828282d2d2d3232323737373c3c3c4141414646464b4b4b5050505555555a5a5a5f5f5f6464646969696e6e6e7373737878787d7d7d8282828787878c8c8c9191919696969b9b9ba0a0a0a5a5a5aaaaaaafafafb4b4b4b9b9b9bebebec3c3c3c8c8c8cdcdcdd2d2d2d7d7d7dcdcdce1e1e1e6e6e6ebebebf0f0f0f5f5f5fafafaffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000202020c0c0c1616162020202a2a2a3434343e3e3e4848485252525c5c5c6666667070707a7a7a8585858f8f8f999999a3a3a3adadadb7b7b7c1c1c1cbcbcbd5d5d5dfdfdfe9e9e9f3f3f3fdfdfdffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+  m_StreamData:
+    offset: 0
+    size: 0
+    path: 

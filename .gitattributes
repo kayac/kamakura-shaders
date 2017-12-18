@@ -1,0 +1,6 @@
+*.cs text eol=crlf
+*.prefab -text
+*.unity -text
+*.anim -text
+*.asset -text
+*.meta -text
