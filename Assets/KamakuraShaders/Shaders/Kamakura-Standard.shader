@@ -4,7 +4,7 @@ Shader "Kayac/Kamakura"
 	Properties
 	{
 		[Header(About)]
-		[KamakuraShaderVersion] _ShaderVersion ("_ShaderVersion", Vector) = (1, 0, 0, -1)
+		[KamakuraShaderVersion] _ShaderVersion ("_ShaderVersion", Vector) = (1, 0, 1, -1)
 
 		[Header(Basic)]
 		_DiffuseColor ("Diffuse Color", Color) = (1.0, 1.0, 1.0, 1.0)
@@ -15,7 +15,7 @@ Shader "Kayac/Kamakura"
 		_AlphaCutoutValue ("Alpha Cutout Value", Range(0.0, 1.0)) = 0.0
 
 		[Header(Filter)]
-		[Toggle] _EnableFilter ("Enable Filter", Float) = 0.0
+		[Toggle] _EnableFilter ("Enable", Float) = 0.0
 		_FilterHue("Hue", Range(-0.5,0.5)) = 0.0
 		_FilterSaturation("Saturation", Float) = 1.0
 		_FilterBrightness("Brightness", Float) = 1.0
@@ -23,82 +23,82 @@ Shader "Kayac/Kamakura"
 		_FilterContrastMidPoint("Contrast Mid Point", Float) = 0.5
 
 		[Header(Normal)]
-		[Toggle(KAMAKURA_NORMALMAP_ON)] _EnableNormal ("Enable Normal Map", Float) = 0.0
-		[CheckNormalType][NoScaleOffset] _NormalTex ("Normal Map", 2D) = "bump" {}
+		[Toggle(KAMAKURA_NORMALMAP_ON)] _EnableNormal ("Enable", Float) = 0.0
+		[CheckNormalType][NoScaleOffset] _NormalTex ("Texture", 2D) = "bump" {}
 
 		// Specular parameters
 		[Header(Specular)]
-		_SpecularColor ("Specular Color", Color) = (1.0, 1.0, 1.0, 1.0)
-		[NoScaleOffset] _SpecularTex ("Specular Mask", 2D) = "white" {}
-		[PowerSlider(10.0)] _SpecularPower ("Specular Power", Range(1.0, 500.0)) = 10.0
-		_SpecularIntensity ("Specular Intensity", Range(0.0, 1.0)) = 1.0
-		_SpecularSmoothness ("Specular Smoothness", Range(0.05, 1.0)) = 1.0
+		_SpecularColor ("Color", Color) = (1.0, 1.0, 1.0, 1.0)
+		[NoScaleOffset] _SpecularTex ("Mask", 2D) = "white" {}
+		[PowerSlider(10.0)] _SpecularPower ("Power", Range(1.0, 500.0)) = 10.0
+		_SpecularIntensity ("Intensity", Range(0.0, 1.0)) = 1.0
+		_SpecularSmoothness ("Softness", Range(0.05, 1.0)) = 1.0
 
 		// Light-ramp parameters
 		[Header(Light Ramp)]
-		[NoScaleOffset] _LightRampTex ("Light Ramp", 2D) = "white" {}
-		_LightRampPresetsOffset ("Light Ramp Preset", Range(0.0, 1.0)) = 0.0
-		_LightRampOffset ("Light Ramp Offset", Range(-1.0, 1.0)) = 0.0
-		[MaterialToggle] _LightRampUseGVertexColor ("Shift Light Ramp Using VertexColor (G)", Float) = 0.0
+		[NoScaleOffset] _LightRampTex ("Ramp", 2D) = "white" {}
+		_LightRampPresetsOffset ("Preset", Range(0.0, 1.0)) = 0.0
+		_LightRampOffset ("Offset", Range(-1.0, 1.0)) = 0.0
+		[MaterialToggle] _LightRampUseGVertexColor ("Offset Using VertexColor (green)", Float) = 0.0
 
 		// Shadow parameters
 		[Header(Shadow)]
 		[Toggle(KAMAKURA_SHADOWMOD_ON)]
-		_EnableShadowMod ("Enable Shadow", Float) = 0.0
-		[NoScaleOffset] _ShadowModTex ("Shadow Texture", 2D) = "white" {}
-		_ShadowModColor ("Shadow Color", Color) = (1.0, 1.0, 1.0, 1.0)
-		_ShadowModIntensity ("Shadow Intensity", Float) = 1
-		[MaterialToggle] _ShadowModUseFilter ("Use Filter for shadow texture", Float) = 0.0
+		_EnableShadowMod ("Enable", Float) = 0.0
+		[NoScaleOffset] _ShadowModTex ("Texture", 2D) = "white" {}
+		_ShadowModColor ("Color", Color) = (1.0, 1.0, 1.0, 1.0)
+		_ShadowModIntensity ("Intensity", Float) = 1
+		[MaterialToggle] _ShadowModUseFilter ("Filter Texture", Float) = 0.0
 
 		[Header(Ambient)]
-		_AmbientColor ("Ambient Color", Color) = (0.0, 0.0, 0.0, 0.0)
-		_AmbientIntensity ("Ambient Intensity", Float) = 0.5
+		_AmbientColor ("Color", Color) = (0.0, 0.0, 0.0, 0.0)
+		_AmbientIntensity ("Intensity", Float) = 0.5
 		_AmbientUnitySHIntensity ("Unity's Ambient Intensity", Float) = 0.0
 
 		// Outline parameters
 		[Header(Outline)]
-		[MaterialToggle] _EnableOutline ("Enable Outline", Float) = 0.0
-		_OutlineColor ("Outline Color", Color) = (0.1, 0.1, 0.1, 1)
-		_OutlineBlendColorTexture ("Blend Color-Texture Value", Range(0.0, 1.0)) = 1.0
-		[ScaledRangeParam(0.0, 1.0)] _OutlineSize ("Outline Thickness", Range(0.0, 0.05)) = 0.01
-		_OutlineCameraDistanceAdaptRate ("Adapt to Camera Distance Value", Range(0.0, 1.0)) = 1.0
-		[MaterialToggle] _OutlineWriteZ ("Enable Inner-side Outline", Float) = 1.0
-		[MaterialToggle] _OutlineUseRVertexColor ("Adjust Outline Using VertexColor (R)", Float) = 0.0
+		[MaterialToggle] _EnableOutline ("Enable", Float) = 0.0
+		_OutlineColor ("Color", Color) = (0.1, 0.1, 0.1, 1)
+		_OutlineBlendColorTexture ("Blend Diffuse Texture", Range(0.0, 1.0)) = 1.0
+		[ScaledRangeParam(0.0, 1.0)] _OutlineSize ("Thickness", Range(0.0, 0.05)) = 0.01
+		_OutlineCameraDistanceAdaptRate ("Adaptive Thickness", Range(0.0, 1.0)) = 1.0
+		[MaterialToggle] _OutlineWriteZ ("Enable Inner Side Outline", Float) = 1.0
+		[MaterialToggle] _OutlineUseRVertexColor ("Thickness Using VertexColor (red)", Float) = 0.0
 
 		// Hatch parameters
 		[Header(Hatch)]
-		[Toggle(KAMAKURA_HATCH_ON)] _EnableHatch ("Enable Hatch", Float) = 0.0
-		_HatchTex ("Hatch Texture", 2D) = "white" {}
-		[MaterialToggle] _HatchScreenSpace ("Hatch in Screen Space", Float) = 0.0
-		_Hatch1Color ("Hatch Level 1 Color", Color) = (0.0, 0.0, 0.0, 1.0)
-		_Hatch2Color ("Hatch Level 2 Color", Color) = (0.0, 0.0, 0.0, 1.0)
-		_Hatch3Color ("Hatch Level 3 Color", Color) = (0.0, 0.0, 0.0, 1.0)
-		[NoScaleOffset] _HatchMask ("Hatch Mask", 2D) = "white" {}
-		_HatchOffset ("Hatch Threshold", Range(-1.0, 1.0)) = 0.0
-		_HatchIntensity ("Hatch Intensity", Range(0.0, 2.0)) = 0.0
-		_HatchRangeStretch ("Hatch Range Stretch", Range(1.0, 8.0)) = 1.0
-		[RotationParam(_HatchRotSin, _HatchRotCos)] _HatchRotation ("Hatch Rotation", Range(0.0, 360.0)) = 0.0
+		[Toggle(KAMAKURA_HATCH_ON)] _EnableHatch ("Enable", Float) = 0.0
+		_HatchTex ("Texture", 2D) = "white" {}
+		[MaterialToggle] _HatchScreenSpace ("Screen Space", Float) = 0.0
+		_Hatch1Color ("Level 1 Color", Color) = (0.0, 0.0, 0.0, 1.0)
+		_Hatch2Color ("Level 2 Color", Color) = (0.0, 0.0, 0.0, 1.0)
+		_Hatch3Color ("Level 3 Color", Color) = (0.0, 0.0, 0.0, 1.0)
+		[NoScaleOffset] _HatchMask ("Mask", 2D) = "white" {}
+		_HatchOffset ("Threshold", Range(-1.0, 1.0)) = 0.0
+		_HatchIntensity ("Intensity", Range(0.0, 2.0)) = 1.0
+		_HatchRangeStretch ("Stretch", Range(1.0, 8.0)) = 1.0
+		[RotationParam(_HatchRotSin, _HatchRotCos)] _HatchRotation ("Rotation", Range(0.0, 360.0)) = 0.0
 		[HideInInspector] _HatchRotSin ("-", Float) = 0.0
 		[HideInInspector] _HatchRotCos ("-", Float) = 1.0
 
 		// Rim-light parameters
 		[Header(Rim)]
-		[Toggle(KAMAKURA_RIM_ON)] _EnableRim ("Enable Rim", Float) = 0.0
-		[KeywordEnum(Additive, Normal)]_RimBlendingMode ("Blending Mode", Float) = 0.0
-		_RimColor ("Rim Color", Color) = (1.0, 1.0, 1.0, 1.0)
-		_RimSize ("Rim Size", Range(0, 1)) = 0.3
-		_RimIntensity ("Rim Intensity", Range(0.01, 1)) = 0.3
-		_RimSoftness ("Rim Softness", Range(0.01, 1)) = 0.3
-		_RimNoiseTex ("Rim Noise", 2D) = "white" {}
+		[Toggle(KAMAKURA_RIM_ON)] _EnableRim ("Enable", Float) = 0.0
+		[KeywordEnum(Additive, Normal)]_RimBlendingMode ("Blend Mode", Float) = 0.0
+		_RimColor ("Color", Color) = (1.0, 1.0, 1.0, 1.0)
+		_RimSize ("Size", Range(0, 1)) = 0.3
+		_RimIntensity ("Intensity", Range(0.01, 1)) = 0.3
+		_RimSoftness ("Softness", Range(0.01, 1)) = 0.3
+		_RimNoiseTex ("Noise", 2D) = "white" {}
 
 		[Header(Emission)]
-		[Toggle(KAMAKURA_EMISSION_ON)] _EnableEmission ("Enable Emission", Float) = 0.0
-		[NoScaleOffset] _EmissionTex ("Emission Map", 2D) = "white" {}
-		_EmissionColor ("Emission Color", Color) = (1, 1, 1, 1)
-		_EmissionPower ("Emission Power", Float) = 0.5
+		[Toggle(KAMAKURA_EMISSION_ON)] _EnableEmission ("Enable", Float) = 0.0
+		[NoScaleOffset] _EmissionTex ("Texture", 2D) = "white" {}
+		_EmissionColor ("Color", Color) = (1, 1, 1, 1)
+		_EmissionPower ("Power", Float) = 0.5
 
 		[Header(Cube Color)]
-		[Toggle(KAMAKURA_CUBECOLOR_ON)] _EnableCubeColor ("Enable Cube Color", Float) = 0.0
+		[Toggle(KAMAKURA_CUBECOLOR_ON)] _EnableCubeColor ("Enable", Float) = 0.0
 		[MaterialToggle] _RimUseCubeColor ("Use For Rim", Float) = 0
 		[MaterialToggle] _AmbientUseCubeColor ("Use For Ambient", Float) = 0.0
 		// Cube color parameters
@@ -138,10 +138,10 @@ Shader "Kayac/Kamakura"
 		Tags { "RenderType"="Opaque" }
 		LOD 100
 
-		UsePass "Hidden/Kayac/KamakuraPasses/SHADOWCASTER"
-		UsePass "Hidden/Kayac/KamakuraPasses/OUTLINE"
-		UsePass "Hidden/Kayac/KamakuraPasses/FORWARD"
-		UsePass "Hidden/Kayac/KamakuraPasses/FORWARDADD"
+		UsePass "Hidden/Kayac/KamakuraPassesStandard/SHADOWCASTER"
+		UsePass "Hidden/Kayac/KamakuraPassesStandard/OUTLINE"
+		UsePass "Hidden/Kayac/KamakuraPassesStandard/FORWARD"
+		UsePass "Hidden/Kayac/KamakuraPassesStandard/FORWARDADD"
 	}
 	FallBack "Diffuse"
 	CustomEditor "Kayac.VisualArts.KamakuraShaderGUI"

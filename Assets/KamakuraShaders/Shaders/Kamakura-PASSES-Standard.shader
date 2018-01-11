@@ -1,4 +1,4 @@
-Shader "Hidden/Kayac/KamakuraPasses"
+Shader "Hidden/Kayac/KamakuraPassesStandard"
 {
 	SubShader
 	{

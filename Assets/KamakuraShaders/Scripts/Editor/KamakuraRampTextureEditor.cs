@@ -10,7 +10,7 @@ namespace Kayac.VisualArts
 {
 
 	[CustomEditor(typeof(KamakuraRampTexture))]
-	public class KamakuraRampTextureEditor : Editor
+	public class KamakuraRampTextureEditor : UnityEditor.Editor
 	{
 		private int _width = 0;
 		private List<Gradient> _cachedGradients;

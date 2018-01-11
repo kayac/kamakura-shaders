@@ -3,7 +3,7 @@
 	Properties
 	{
 		[Header(About)]
-		[KamakuraShaderVersion] _ShaderVersion ("_ShaderVersion", Vector) = (1, 0, 0, -1)
+		[KamakuraShaderVersion] _ShaderVersion ("_ShaderVersion", Vector) = (1, 0, 1, -1)
 
 		[Header(Basic)]
 		[NoScaleOffset] _MainTex ("Main Texture", 2D) = "black" {}
@@ -13,7 +13,7 @@
 		[KeywordEnum(Nothing, FilterParameters, OutlineColor, OutlineParameters)]  _VertexColorAs ("Use Vertex Color As", Float) = 0
 
 		[Header(Outline)]
-		[Toggle] _EnableOutline("Enable Outline", Float) = 0.0
+		[Toggle] _EnableOutline("Enable", Float) = 0.0
 		[FormerlySerializedAs(_SDFTex)][NoScaleOffset] _OutlineSDFTex ("SDF Texture", 2D) = "white" {}
 		_OutlineColor ("Color", Color) = (1, 1, 1, 1)
 		_OutlineThickness ("Thickness", Range(0, 0.5)) = 0.5
@@ -23,7 +23,7 @@
 
 
 		[Header(Filter)]
-		[Toggle] _EnableFilter ("Enable Filter", Float) = 0.0
+		[Toggle] _EnableFilter ("Enable", Float) = 0.0
 		_FilterHue("Hue", Range(-0.5,0.5)) = 0.0
 		_FilterSaturation("Saturation", Float) = 1.0
 		_FilterBrightness("Brightness", Float) = 1.0

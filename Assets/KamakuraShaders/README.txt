@@ -1,7 +1,7 @@
-KAMAKURA SHADERS v1.0.0
+KAMAKURA SHADERS v1.0.1
 =======================
 
-Updated 2017/12/19
+Updated 2018/1/11
 
 Kamakura Shaders is a collection of shaders and components focusing on Non-Photorealistic
 Rendering for Unity with a bunch of features and adjustable parameters in a user-friendly
@@ -18,6 +18,11 @@ NOTES
 
 CHANGELOG
 ---------
+
+### v1.0.1
+- Fixed weird outline bug when using Metal Graphics API
+- Improved Select Mode feature
+- Improved property names
 
 ### v1.0.0
 - 3 Shaders included: Kamakura, Kamakura Hair, Kamakura 2D

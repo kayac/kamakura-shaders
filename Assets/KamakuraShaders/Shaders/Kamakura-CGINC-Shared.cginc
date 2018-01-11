@@ -90,11 +90,7 @@ KAMAKURA_EXT_SharedExtraParams
 		fixed2 lightUV = fixed2(lighting + _LightRampOffset + adjuster, _LightRampPresetsOffset);
 		lightUV = clamp(lightUV, 0.01, 0.99);
 
-	#ifdef KAMAKURA_VERTEXLIGHT_ON
-		return fixed4(tex2Dlod(_LightRampTex, float4(lightUV, 0, 0)).xyz, adjuster);
-	#else
 		return fixed4(tex2D(_LightRampTex, lightUV).xyz, adjuster);
-	#endif
 	}
 
 /// <--- FILTER MODULE --->

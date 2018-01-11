@@ -8,7 +8,7 @@ namespace Kayac.VisualArts
 
     [CustomEditor(typeof(LocalLight))]
     [CanEditMultipleObjects]
-    public class LocalLightEditor : Editor
+    public class LocalLightEditor : UnityEditor.Editor
     {
         List<LocalLight> multiTarget = new List<LocalLight>();
 

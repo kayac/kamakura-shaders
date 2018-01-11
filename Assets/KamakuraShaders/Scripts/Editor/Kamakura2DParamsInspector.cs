@@ -10,7 +10,7 @@ namespace Kayac.VisualArts
 
 	[CanEditMultipleObjects]
 	[CustomEditor(typeof(Kamakura2DParams), true)]
-	public class Kamakura2DParamsInspector : Editor
+	public class Kamakura2DParamsInspector : UnityEditor.Editor
 	{
 
 		SerializedProperty m_hueProp;
