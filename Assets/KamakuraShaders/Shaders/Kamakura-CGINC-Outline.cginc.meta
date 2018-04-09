@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: 717b13a325a0049efab1bfa8bf63db98
+labels:
+- KamakuraShaders
 timeCreated: 1503894917
 licenseType: Pro
 ShaderImporter:

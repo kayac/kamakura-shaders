@@ -186,6 +186,7 @@ Shader "Hidden/Kayac/KamakuraPassesStandard"
 
 			ZWrite On
 			ZTest LEqual
+			Cull [_CullMode]
 			Blend [_SrcBlend] [_DstBlend]
 
 			Stencil
@@ -230,6 +231,7 @@ Shader "Hidden/Kayac/KamakuraPassesStandard"
 
 			ZWrite On
 			ZTest LEqual
+			Cull [_CullMode]
 			Blend One One
 
 			Stencil

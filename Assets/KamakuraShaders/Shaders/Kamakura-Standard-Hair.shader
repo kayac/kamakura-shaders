@@ -1,13 +1,14 @@
-﻿Shader "Kayac/Kamakura-Hair"
+Shader "Kayac/Kamakura-Hair"
 {
 	Properties
 	{
 		[Header(About)]
-		[KamakuraShaderVersion] _ShaderVersion ("_ShaderVersion", Vector) = (1, 0, 1, -1)
+		[KamakuraShaderVersion] _ShaderVersion ("_ShaderVersion", Vector) = (1, 0, 3, -1)
 
 		[Header(Basic)]
 		_DiffuseColor("Diffuse Color", Color) = (1, 1, 1, 1)
 		_MainTex ("Diffuse Texture", 2D) = "white" {}
+		[Enum(UnityEngine.Rendering.CullMode)] _CullMode ("Cull Mode", Float) = 2.0
 		[KamakuraBlendMode] _BlendMode ("Blend Mode", Float) = 0.0
 
 		[Header(Filter)]
@@ -51,6 +52,7 @@
 		[Header(Shadow)]
 		[Toggle(KAMAKURA_SHADOWMOD_ON)] _EnableShadowMod ("Enable", Float) = 0.0
 		[NoScaleOffset] _ShadowModTex ("Texture", 2D) = "white" {}
+		[KeywordEnum(Normal, Multiply)] _ShadowModBlendMode ("Blend Mode", Float) = 0.0
 		_ShadowModColor ("Color", Color) = (1.0, 1.0, 1.0, 1.0)
 		_ShadowModIntensity ("Intensity", Float) = 1
 		[MaterialToggle] _ShadowModUseFilter ("Filter Texture", Float) = 0.0
@@ -74,6 +76,7 @@
 		[Header(Hatch)]
 		[Toggle(KAMAKURA_HATCH_ON)] _EnableHatch ("Enable", Float) = 0.0
 		_HatchTex ("Texture", 2D) = "white" {}
+		[KeywordEnum(Normal, Multiply)] _HatchBlendMode ("Blend Mode", Float) = 0.0
 		[MaterialToggle] _HatchScreenSpace ("Screen Space", Float) = 0.0
 		_Hatch1Color ("Level 1 Color", Color) = (0.0, 0.0, 0.0, 1.0)
 		_Hatch2Color ("Level 2 Color", Color) = (0.0, 0.0, 0.0, 1.0)

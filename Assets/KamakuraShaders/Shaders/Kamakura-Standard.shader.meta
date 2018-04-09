@@ -1,8 +1,11 @@
 fileFormatVersion: 2
 guid: d7730c2ef84884dacab76d02c257d58d
+labels:
+- KamakuraShaders
 timeCreated: 1475565424
 licenseType: Pro
 ShaderImporter:
+  externalObjects: {}
   defaultTextures: []
   userData: 
   assetBundleName: 

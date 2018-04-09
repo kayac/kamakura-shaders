@@ -34,7 +34,7 @@ namespace Kayac.VisualArts
 		static Dictionary<string, MaterialProperty> _copiedProperties = new Dictionary<string, MaterialProperty>();
 		static HashSet<string> _currentMaterialSelectedProps = new HashSet<string>();
 
-		public static VersionDescriptor Version = new VersionDescriptor(1, 0, 1);
+		public static readonly VersionDescriptor Version;
 
 		static GUIStyle RichLabel;
 
@@ -55,6 +55,22 @@ namespace Kayac.VisualArts
 		}
 
 		private ShaderReflectionHelper _reflectionHelper;
+
+
+		static KamakuraShaderGUI()
+		{
+			var verGuids = AssetDatabase.FindAssets("t:kayac.visualarts.versiondescriptor");
+			if (verGuids.Length == 1)
+			{
+				var path = AssetDatabase.GUIDToAssetPath(verGuids[0]);
+				Version = AssetDatabase.LoadAssetAtPath<VersionDescriptor>(path);
+			}
+			else
+			{
+				Version = new VersionDescriptor();
+				Version.SetVersion(1, 0, 3);
+			}
+		}
 
 		public KamakuraShaderGUI()
 		{

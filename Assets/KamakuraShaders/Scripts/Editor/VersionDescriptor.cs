@@ -1,21 +1,41 @@
+using UnityEngine;
+
 
 namespace Kayac.VisualArts
 {
-
-	public class VersionDescriptor
+	public class VersionDescriptor : ScriptableObject
 	{
-		public readonly int major;
-		public readonly int minor;
-		public readonly int patch;
 
-		public readonly string stringDescriptor;
+		[SerializeField]
+		[HideInInspector]
+		private int _major;
 
-		public VersionDescriptor(int major, int minor, int patch)
+		[SerializeField]
+		[HideInInspector]
+		private int _minor;
+
+		[SerializeField]
+		[HideInInspector]
+		private int _patch;
+
+
+		[SerializeField]
+		[HideInInspector]
+		private string _stringDescriptor;
+
+
+		public int major { get { return _major; } }
+		public int minor { get { return _minor; } }
+		public int patch { get { return _patch; } }
+
+		public string stringDescriptor { get { return _stringDescriptor; } }
+
+		public void SetVersion(int major, int minor, int patch)
 		{
-			this.major = major;
-			this.minor = minor;
-			this.patch = patch;
-			this.stringDescriptor = major + "." + minor + "." + patch;
+			_major = major;
+			_minor = minor;
+			_patch = patch;
+			_stringDescriptor = major + "." + minor + "." + patch;
 		}
 
 		override public string ToString()

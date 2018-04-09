@@ -1,10 +1,10 @@
-﻿
+
 Shader "Kayac/Kamakura"
 {
 	Properties
 	{
 		[Header(About)]
-		[KamakuraShaderVersion] _ShaderVersion ("_ShaderVersion", Vector) = (1, 0, 1, -1)
+		[KamakuraShaderVersion] _ShaderVersion ("_ShaderVersion", Vector) = (1, 0, 3, -1)
 
 		[Header(Basic)]
 		_DiffuseColor ("Diffuse Color", Color) = (1.0, 1.0, 1.0, 1.0)
@@ -25,6 +25,7 @@ Shader "Kayac/Kamakura"
 		[Header(Normal)]
 		[Toggle(KAMAKURA_NORMALMAP_ON)] _EnableNormal ("Enable", Float) = 0.0
 		[CheckNormalType][NoScaleOffset] _NormalTex ("Texture", 2D) = "bump" {}
+		_NormalIntensity ("Intensity", Float) = 1.0
 
 		// Specular parameters
 		[Header(Specular)]
@@ -46,6 +47,7 @@ Shader "Kayac/Kamakura"
 		[Toggle(KAMAKURA_SHADOWMOD_ON)]
 		_EnableShadowMod ("Enable", Float) = 0.0
 		[NoScaleOffset] _ShadowModTex ("Texture", 2D) = "white" {}
+		[KeywordEnum(Normal, Multiply)] _ShadowModBlendMode ("Blend Mode", Float) = 0.0
 		_ShadowModColor ("Color", Color) = (1.0, 1.0, 1.0, 1.0)
 		_ShadowModIntensity ("Intensity", Float) = 1
 		[MaterialToggle] _ShadowModUseFilter ("Filter Texture", Float) = 0.0
@@ -69,6 +71,7 @@ Shader "Kayac/Kamakura"
 		[Header(Hatch)]
 		[Toggle(KAMAKURA_HATCH_ON)] _EnableHatch ("Enable", Float) = 0.0
 		_HatchTex ("Texture", 2D) = "white" {}
+		[KeywordEnum(Normal, Multiply)] _HatchBlendMode ("Blend Mode", Float) = 0.0
 		[MaterialToggle] _HatchScreenSpace ("Screen Space", Float) = 0.0
 		_Hatch1Color ("Level 1 Color", Color) = (0.0, 0.0, 0.0, 1.0)
 		_Hatch2Color ("Level 2 Color", Color) = (0.0, 0.0, 0.0, 1.0)
