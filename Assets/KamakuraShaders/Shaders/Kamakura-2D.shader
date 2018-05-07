@@ -3,7 +3,7 @@ Shader "Kayac/Kamakura2D"
 	Properties
 	{
 		[Header(About)]
-		[KamakuraShaderVersion] _ShaderVersion ("_ShaderVersion", Vector) = (1, 0, 4, -1)
+		[KamakuraShaderVersion] _ShaderVersion ("_ShaderVersion", Vector) = (1, 0, 5, -1)
 
 		[Header(Basic)]
 		[NoScaleOffset] _MainTex ("Main Texture", 2D) = "black" {}

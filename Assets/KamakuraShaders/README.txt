@@ -1,4 +1,4 @@
-KAMAKURA SHADERS v1.0.4
+KAMAKURA SHADERS v1.0.5
 =======================
 
 Updated 2018/5/7
@@ -10,7 +10,9 @@ interface.
 
 NOTES
 -----
-- Target Environment: Unity 5.6.x ~ Unity 2017.3 (note that Unity 2018.1 is not yet supported)
+- Target Environment: Unity 5.6.x ~ Unity 2018.1
+- Point and Spot Light will not have attenuation due to a bug in Unity 2018.1.0f2. If
+  you are not using Unity 2018.1, please use Kamakura Shaders v1.0.4 instead
 - Graphics API DirectX9: Screen Space Hatch feature is not functioning on this graphics API
 - These shaders has not been tested yet on console platforms
   (PS4 / WiiU / Switch / Xbox One)
@@ -18,6 +20,11 @@ NOTES
 
 CHANGELOG
 ---------
+
+### v1.0.5
+- Point light and spot light attenuation is temporarily disabled due to a bug in
+  Unity 2018.1.0f2. If you are not using Unity 2018.1, please use Kamakura 
+  Shaders v1.0.4 instead
 
 ### v1.0.4
 - Fixed normal seams problem
