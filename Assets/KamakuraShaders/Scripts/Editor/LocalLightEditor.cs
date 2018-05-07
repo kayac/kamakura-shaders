@@ -33,7 +33,7 @@ namespace Kayac.VisualArts
 
             var hColor = Handles.color;
             Handles.color = t.localLightColor;
-            Handles.ArrowHandleCap(1, tPos, newRot, 1, EventType.Repaint);
+            Handles.ArrowHandleCap(1, tPos, newRot, HandleUtility.GetHandleSize(tPos) * 1.5f, EventType.Repaint);
             Handles.color = hColor;
 
             if (EditorGUI.EndChangeCheck())

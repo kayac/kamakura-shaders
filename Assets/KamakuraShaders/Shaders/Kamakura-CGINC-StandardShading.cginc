@@ -27,7 +27,7 @@
 		float3_t lightDir 				:	TEXCOORD5;
 		LIGHTING_COORDS(6, 7)
 	#ifdef KAMAKURA_NORMALMAP_ON
-		float3_t tangent				:	TEXCOORD8;
+		float4_t tangent				:	TEXCOORD8;
 	#endif
 	#ifdef KAMAKURA_LOCALLIGHT_ON
 		float3_t localLightDir 			:	TEXCOORD9;
@@ -45,7 +45,7 @@
 		float3_t lightDir 				:	TEXCOORD4;
 		LIGHTING_COORDS(5, 6)
 	#ifdef KAMAKURA_NORMALMAP_ON
-		float3_t tangent				:	TEXCOORD7;
+		float4_t tangent				:	TEXCOORD7;
 	#endif
 	#ifdef KAMAKURA_LOCALLIGHT_ON
 		float3_t localLightDir 			:	TEXCOORD8;
@@ -142,10 +142,14 @@
 		float3_t normalDir = normalize(IN.normal);
 		float3_t viewDir = normalize(IN.viewDir);
 
+
 	#ifdef KAMAKURA_NORMALMAP_ON
-		float3_t tangentDir = (IN.tangent);
+		fixed hasChirality = abs(sign(IN.tangent.w));
+		fixed tangentChirality = hasChirality * IN.tangent.w + (1 - hasChirality) * 1;
+		float4_t tangentDir = float4_t(normalize(IN.tangent.xyz), tangentChirality);
 		normalDir = ApplyNormalMap(normalDir, tangentDir, IN.uvs);
 	#endif
+
 
 		fixed3 sampledCubeColor = IN.sampledCubeColor;
 		fixed3 ambient = GetAmbient(sampledCubeColor, IN.ambient);
@@ -217,7 +221,9 @@
 		float3_t normalDir = normalize(IN.normal);
 
 	#ifdef KAMAKURA_NORMALMAP_ON
-		float3_t tangentDir = normalize(IN.tangent);
+		fixed hasChirality = abs(sign(IN.tangent.w));
+		fixed tangentChirality = hasChirality * IN.tangent.w + (1 - hasChirality) * 1;
+		float4_t tangentDir = float4_t(normalize(IN.tangent.xyz), tangentChirality);
 		normalDir = ApplyNormalMap(normalDir, tangentDir, IN.uvs);
 	#endif
 

@@ -13,8 +13,9 @@ Material:
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
+  m_CustomRenderQueue: 2000
+  stringTagMap:
+    RenderType: Opaque
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -92,9 +93,13 @@ Material:
     - _AmbientIntensity: 0.5
     - _AmbientUnitySHIntensity: 0
     - _AmbientUseCubeColor: 0
-    - _BlendMode: 0
+    - _BinormalRotCos: 1
+    - _BinormalRotSin: 0
+    - _BinormalRotation: 0
+    - _BlendMode: 8
     - _BumpScale: 1
     - _CubeColorUseLocalSpace: 0
+    - _CullMode: 2
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -113,6 +118,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _HatchBlendMode: 0
     - _HatchIntensity: 0
     - _HatchOffset: 0
     - _HatchRangeStretch: 1
@@ -131,9 +137,10 @@ Material:
     - _OutlineBlendColorTexture: 1
     - _OutlineCameraDistanceAdaptRate: 1
     - _OutlineNormalTweak: 0
-    - _OutlineSize: 0.0012500001
+    - _OutlineSize: 0.0050000004
     - _OutlineUseRVertexColor: 0
     - _OutlineWriteZ: 1
+    - _OutlineZOffset: 0
     - _Parallax: 0.02
     - _PrimaryShift: 0.09
     - _PrimarySpecularIntensity: 1
@@ -149,6 +156,7 @@ Material:
     - _SecondarySpecularShadowAffection: 0.5
     - _SecondarySpecularSmoothness: 1
     - _ShadowAffectSpecular: 1
+    - _ShadowModBlendMode: 0
     - _ShadowModIntensity: 1
     - _ShadowModUseFilter: 0
     - _SmoothnessTextureChannel: 0

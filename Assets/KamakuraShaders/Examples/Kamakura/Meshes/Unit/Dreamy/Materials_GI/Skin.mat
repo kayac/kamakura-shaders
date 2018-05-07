@@ -94,7 +94,7 @@ Material:
     - _AmbientIntensity: 0.5
     - _AmbientUnitySHIntensity: 1
     - _AmbientUseCubeColor: 0
-    - _BlendMode: 0
+    - _BlendMode: 8
     - _BumpScale: 1
     - _CubeColorUseLocalSpace: 0
     - _CullMode: 2
@@ -121,6 +121,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _HatchBlendMode: 0
     - _HatchIntensity: 0.8
     - _HatchOffset: 0
     - _HatchRangeStretch: 1.46
@@ -136,19 +137,22 @@ Material:
     - _LocalLightVecAsMain: 0
     - _Metallic: 0
     - _Mode: 0
+    - _NormalIntensity: 1
     - _OcclusionStrength: 1
     - _OutlineBlendColorTexture: 0
     - _OutlineCameraDistanceAdaptRate: 1
     - _OutlineNormalTweak: 0
-    - _OutlineSize: 0.0005
+    - _OutlineSize: 0.0050000004
     - _OutlineUseRVertexColor: 0
     - _OutlineWriteZ: 0
+    - _OutlineZOffset: 0
     - _Parallax: 0.02
     - _RimBlendingMode: 0
     - _RimIntensity: 0.3
     - _RimSize: 0.3
     - _RimSoftness: 0.3
     - _RimUseCubeColor: 0
+    - _ShadowModBlendMode: 0
     - _ShadowModIntensity: 1
     - _ShadowModRimUseDiffuseTexture: 0
     - _ShadowModSpecularUseDiffuseTexture: 0

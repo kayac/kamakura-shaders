@@ -4,7 +4,7 @@ Shader "Kayac/Kamakura"
 	Properties
 	{
 		[Header(About)]
-		[KamakuraShaderVersion] _ShaderVersion ("_ShaderVersion", Vector) = (1, 0, 3, -1)
+		[KamakuraShaderVersion] _ShaderVersion ("_ShaderVersion", Vector) = (1, 0, 4, -1)
 
 		[Header(Basic)]
 		_DiffuseColor ("Diffuse Color", Color) = (1.0, 1.0, 1.0, 1.0)
@@ -64,7 +64,8 @@ Shader "Kayac/Kamakura"
 		_OutlineBlendColorTexture ("Blend Diffuse Texture", Range(0.0, 1.0)) = 1.0
 		[ScaledRangeParam(0.0, 1.0)] _OutlineSize ("Thickness", Range(0.0, 0.05)) = 0.01
 		_OutlineCameraDistanceAdaptRate ("Adaptive Thickness", Range(0.0, 1.0)) = 1.0
-		[MaterialToggle] _OutlineWriteZ ("Enable Inner Side Outline", Float) = 1.0
+		[MaterialToggle] _OutlineWriteZ ("Write Depth", Float) = 1.0
+		[ScaledRangeParam(0.0, 1.0)] _OutlineZOffset ("Z Offset", Range(0.0, 0.00015)) = 0.0
 		[MaterialToggle] _OutlineUseRVertexColor ("Thickness Using VertexColor (red)", Float) = 0.0
 
 		// Hatch parameters

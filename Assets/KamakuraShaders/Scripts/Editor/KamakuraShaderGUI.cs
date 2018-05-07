@@ -68,7 +68,7 @@ namespace Kayac.VisualArts
 			else
 			{
 				Version = new VersionDescriptor();
-				Version.SetVersion(1, 0, 3);
+				Version.SetVersion(1, 0, 4);
 			}
 		}
 

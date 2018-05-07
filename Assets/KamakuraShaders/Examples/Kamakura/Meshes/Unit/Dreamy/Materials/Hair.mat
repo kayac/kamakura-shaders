@@ -8,12 +8,12 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: Hair
   m_Shader: {fileID: 4800000, guid: c193f53d99e244e9db666eda7a7e0d56, type: 3}
-  m_ShaderKeywords: KAMAKURA_LOCALLIGHT_ON KAMAKURA_OUTLINE_ON KAMAKURA_SHADOWMOD_ON
-    _EMISSION _OUTLINEWRITEZ_ON _RIMBLENDINGMODE_ADDITIVE
+  m_ShaderKeywords: KAMAKURA_OUTLINE_ON KAMAKURA_SHADOWMOD_ON _EMISSION _OUTLINEWRITEZ_ON
+    _RIMBLENDINGMODE_ADDITIVE
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2450
+  m_CustomRenderQueue: 2000
   stringTagMap:
     RenderType: Opaque
   disabledShaderPasses: []
@@ -93,9 +93,13 @@ Material:
     - _AmbientIntensity: 0.5
     - _AmbientUnitySHIntensity: 0
     - _AmbientUseCubeColor: 0
-    - _BlendMode: 0
+    - _BinormalRotCos: 1
+    - _BinormalRotSin: 0
+    - _BinormalRotation: 0
+    - _BlendMode: 8
     - _BumpScale: 1
     - _CubeColorUseLocalSpace: 0
+    - _CullMode: 2
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -110,10 +114,11 @@ Material:
     - _FilterContrastMidPoint: 0.5
     - _FilterHue: -0.1
     - _FilterSaturation: 1
-    - _GlobalLightIntensity: 0
+    - _GlobalLightIntensity: 1
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _HatchBlendMode: 0
     - _HatchIntensity: 0.51
     - _HatchOffset: 0.17
     - _HatchRangeStretch: 1.64
@@ -132,9 +137,10 @@ Material:
     - _OutlineBlendColorTexture: 1
     - _OutlineCameraDistanceAdaptRate: 0
     - _OutlineNormalTweak: 0
-    - _OutlineSize: 0.001
+    - _OutlineSize: 0.0050000004
     - _OutlineUseRVertexColor: 0
     - _OutlineWriteZ: 1
+    - _OutlineZOffset: 0
     - _Parallax: 0.02
     - _PrimaryShift: 0.9
     - _PrimarySpecularIntensity: 0.3
@@ -150,6 +156,7 @@ Material:
     - _SecondarySpecularShadowAffection: 0.5
     - _SecondarySpecularSmoothness: 0.05
     - _ShadowAffectSpecular: 0
+    - _ShadowModBlendMode: 0
     - _ShadowModIntensity: 1
     - _ShadowModUseFilter: 0
     - _SmoothnessTextureChannel: 0

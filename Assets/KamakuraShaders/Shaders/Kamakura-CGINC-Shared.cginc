@@ -20,8 +20,6 @@
 
 KAMAKURA_EXT_SharedExtraParams
 
-	uniform float_t _OutlineSize = 1.0;
-	uniform float_t _DepthBias = 0.00012;
 
 	uniform sampler2D _MainTex;
 	uniform float4_t _MainTex_ST;
@@ -60,7 +58,7 @@ KAMAKURA_EXT_SharedExtraParams
 
 	inline float3_t GetViewDir(float4 vertexPos)
 	{
-	#if defined(SHADER_API_METAL) || defined(SHADER_API_D3D11) || defined(SHADER_API_D3D11_9X)
+	#if defined(SHADER_API_METAL) || defined(SHADER_API_D3D11) || defined(SHADER_API_D3D11_9X) || defined(SHADER_API_D3D9)
  		float4_t nearPlane = float4_t(unity_CameraWorldClipPlanes[4].xyz, 0);
 	#else
 		float4_t nearPlane = float4_t(-unity_CameraWorldClipPlanes[4].xyz, 0);
@@ -339,12 +337,13 @@ KAMAKURA_EXT_SharedExtraParams
 	uniform sampler2D _NormalTex;
 	uniform fixed _NormalIntensity;
 
-	inline float3_t ApplyNormalMap(float3_t normalDir, float3_t tangentDir, float2_t uv)
+	inline float3_t ApplyNormalMap(float3_t normalDir, float4_t tangentDir, float2_t uv)
 	{
-		float3_t binormalDir = normalize(cross(normalDir, tangentDir));
-		half3x3 normalBase = half3x3(tangentDir, binormalDir, normalDir);
-		float3_t normalSample = UnpackNormal(tex2D(_NormalTex, uv));
-		normalSample = lerp(float3_t(0, 0, 1), normalSample, _NormalIntensity);
+		float3_t binormalDir = normalize(cross (normalDir, tangentDir.xyz) * tangentDir.w);
+		half3x3 normalBase = half3x3(tangentDir.xyz, binormalDir, normalDir);
+		float4_t normal = tex2D(_NormalTex, uv);
+		float3_t normalSample = UnpackNormal(normal);
+		normalSample.xy *= _NormalIntensity;
 		return normalize(mul(normalSample, normalBase));
 	}
 #endif

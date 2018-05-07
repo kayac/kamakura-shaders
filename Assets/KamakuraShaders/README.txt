@@ -1,7 +1,7 @@
-KAMAKURA SHADERS v1.0.3
+KAMAKURA SHADERS v1.0.4
 =======================
 
-Updated 2018/4/9
+Updated 2018/5/7
 
 Kamakura Shaders is a collection of shaders and components focusing on Non-Photorealistic
 Rendering for Unity with a bunch of features and adjustable parameters in a user-friendly
@@ -10,7 +10,7 @@ interface.
 
 NOTES
 -----
-- Target Environment: Unity 5.6.x or newer (Unity 2017.2.0p4 at this moment)
+- Target Environment: Unity 5.6.x ~ Unity 2017.3 (note that Unity 2018.1 is not yet supported)
 - Graphics API DirectX9: Screen Space Hatch feature is not functioning on this graphics API
 - These shaders has not been tested yet on console platforms
   (PS4 / WiiU / Switch / Xbox One)
@@ -18,6 +18,13 @@ NOTES
 
 CHANGELOG
 ---------
+
+### v1.0.4
+- Fixed normal seams problem
+- Improved Outline: scale-independent outline. Back-face outline is now
+  calculated in clip-space, so it might be necessary to adjust outline
+  thickness parameter on existing materials
+- Added Rotate parameter in Kamakura Hair shader for rotating hair specular
 
 ### v1.0.3
 - Added Blend Mode (Normal, Multiply) for Hatch and Shadow

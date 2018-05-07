@@ -42,6 +42,9 @@
 	uniform fixed _SecondarySpecularShadowAffection;
 	uniform half _SecondaryShift;
 
+	uniform fixed _BinormalRotSin;
+	uniform fixed _BinormalRotCos;
+
 	uniform fixed _UsingRightMirroredMesh;
 
 	struct appdata_hair {
@@ -176,6 +179,8 @@
 		fixed3 normalDir = IN.normal;
 		fixed3 viewDir = IN.viewDir;
 
+		binormalDir = binormalDir * _BinormalRotCos + (dot(binormalDir, normalDir) * normalDir * (1 - _BinormalRotCos)) + (cross(normalDir, binormalDir) * _BinormalRotSin);
+
 		fixed3 sampledCubeColor = IN.sampledCubeColor;
 		fixed3 ambient = GetAmbient(sampledCubeColor, IN.ambient);
 
@@ -219,6 +224,7 @@
 		diffuse = HatchDiffuse(IN.pos, IN.uv, hatchDiffuseParam * 2 - 1, 1, diffuse);
 	#endif
 
+
 		float2_t hairSpecUV = TRANSFORM_TEX(IN.uv, _HairSpecShift);
 		fixed hairSpecShift = (tex2D(_HairSpecShift, hairSpecUV).r - 0.5) * _SpecularShiftIntensity;
 
@@ -238,6 +244,7 @@
 		specular = specular * primarySpecularShadowAffection * _PrimarySpecularIntensity;
 
 		fixed secondarySpecular = StrandSpecular(t2, viewDir, lightDirection, _SpecularPower2);
+
 		secondarySpecular = smoothstep(-0.5 * _SecondarySpecularSmoothness + 0.5, _SecondarySpecularSmoothness * 0.5 + 0.5, secondarySpecular);
 
 		float2_t hairStrandUV = TRANSFORM_TEX(IN.uv, _HairStrandTex);
@@ -256,6 +263,7 @@
 		outColor.rgb *= texSample.a;
 		outColor.a = texSample.a * _DiffuseColor.a;
 		KAMAKURA_EXT_HairPixelFwdBase(IN, outColor)
+
 		return outColor;
 	}
 

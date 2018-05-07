@@ -24,6 +24,8 @@ uniform fixed4 _OutlineColor;
 uniform fixed _OutlineCameraDistanceAdaptRate;
 uniform fixed _OutlineBlendColorTexture;
 uniform fixed _OutlineUseRVertexColor;
+uniform float_t _OutlineSize;
+uniform float_t _OutlineZOffset;
 
 v2f_outline OutlineVert(appdata_outline v)
 {
@@ -35,23 +37,27 @@ v2f_outline OutlineVert(appdata_outline v)
 		float3 normal = v.normal;
 
 		float4 worldPos = mul(unity_ObjectToWorld, vertex);
-		float3 worldNormal = mul(float4(normal.xyz, 0), unity_WorldToObject);
-		float thickness = v.color.r * _OutlineUseRVertexColor + (1 - _OutlineUseRVertexColor);
-		float normalScale = _OutlineSize * thickness;
-		float cameraDistance = lerp(length(_WorldSpaceCameraPos-worldPos.xyz), 1, 1 - _OutlineCameraDistanceAdaptRate);
+		float thickness = _OutlineSize * (v.color.r * _OutlineUseRVertexColor + (1 - _OutlineUseRVertexColor));
+		float cameraDistance =  lerp(1, distance(_WorldSpaceCameraPos, worldPos.xyz), (1 - UNITY_MATRIX_P[3][3]) * _OutlineCameraDistanceAdaptRate);
+		float3 clipNormal = normalize(mul(UNITY_MATRIX_IT_MV, float4(normal, 1)).xyz);
 
-		worldPos.xyz += normalScale * worldNormal * cameraDistance;
-		worldPos.xyz = mul(unity_WorldToObject, float4(worldPos.xyz, 1)).xyz;
+		clipNormal.x *= _ScreenParams.y / _ScreenParams.x;
+
+		#if defined(SHADER_API_METAL) || defined(SHADER_API_D3D11) || defined(SHADER_API_D3D11_9X) || defined(SHADER_API_D3D9)
+			clipNormal.y *= -1;
+		#endif
 
 		v2f_outline o;
 		UNITY_INITIALIZE_OUTPUT(v2f_outline, o)
 
-		o.pos = UnityObjectToClipPos(worldPos);
+		o.pos = UnityObjectToClipPos(vertex);
+		float3 clipPos = float3(o.pos.xyz + thickness * clipNormal * cameraDistance);
+		o.pos.xy = clipPos.xy;
 
 		#ifdef UNITY_REVERSED_Z
-			o.pos.z -= _DepthBias;
+			o.pos.z -= _OutlineZOffset;
 		#else
-			o.pos.z += _DepthBias;
+			o.pos.z += _OutlineZOffset;
 		#endif
 
 		o.UV = TRANSFORM_TEX(v.texcoord.xy, _MainTex);

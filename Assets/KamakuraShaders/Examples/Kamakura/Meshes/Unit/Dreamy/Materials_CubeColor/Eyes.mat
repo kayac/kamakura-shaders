@@ -119,6 +119,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _HatchBlendMode: 0
     - _HatchIntensity: 0
     - _HatchOffset: 0
     - _HatchRangeStretch: 1
@@ -133,6 +134,7 @@ Material:
     - _LocalLightVecAsMain: 0
     - _Metallic: 0
     - _Mode: 0
+    - _NormalIntensity: 1
     - _OcclusionStrength: 1
     - _OutlineBlendColorTexture: 1
     - _OutlineCameraDistanceAdaptRate: 1
@@ -140,12 +142,14 @@ Material:
     - _OutlineSize: 0.001
     - _OutlineUseRVertexColor: 0
     - _OutlineWriteZ: 1
+    - _OutlineZOffset: 0
     - _Parallax: 0.02
     - _RimBlendingMode: 0
     - _RimIntensity: 0.3
     - _RimSize: 0.5
     - _RimSoftness: 0.01
     - _RimUseCubeColor: 0
+    - _ShadowModBlendMode: 0
     - _ShadowModIntensity: 1
     - _ShadowModUseFilter: 0
     - _SmoothnessTextureChannel: 0

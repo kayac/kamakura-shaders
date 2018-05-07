@@ -3,7 +3,7 @@ Shader "Kayac/Kamakura-Hair"
 	Properties
 	{
 		[Header(About)]
-		[KamakuraShaderVersion] _ShaderVersion ("_ShaderVersion", Vector) = (1, 0, 3, -1)
+		[KamakuraShaderVersion] _ShaderVersion ("_ShaderVersion", Vector) = (1, 0, 4, -1)
 
 		[Header(Basic)]
 		_DiffuseColor("Diffuse Color", Color) = (1, 1, 1, 1)
@@ -23,6 +23,9 @@ Shader "Kayac/Kamakura-Hair"
 		_HairSpecShift ("Local Shift", 2D) = "gray" {}
 		_SpecularShiftIntensity ("Local Shift Strength", Float) = 1.0
 		[NoScaleOffset] _SpecularMap ("Mask", 2D) = "white" {}
+		[RotationParam(_BinormalRotSin, _BinormalRotCos)] _BinormalRotation ("Rotation", Range(0.0, 360.0)) = 0.0
+		[HideInInspector] _BinormalRotSin ("-", Float) = 0.0
+		[HideInInspector] _BinormalRotCos ("-", Float) = 1.0
 
 		[Header(Primary Specular)]
 		_SpecularColor1 ("Color", Color) = (1, 1, 1, 1)
@@ -63,14 +66,16 @@ Shader "Kayac/Kamakura-Hair"
 		_AmbientIntensity ("Intensity", Float) = 0.5
 		_AmbientUnitySHIntensity ("Unity's Ambient Intensity", Float) = 0.0
 
+		// Outline parameters
 		[Header(Outline)]
-		[Toggle(KAMAKURA_OUTLINE_ON)] _EnableOutline ("Enable", Float) = 0.0
+		[MaterialToggle] _EnableOutline ("Enable", Float) = 0.0
 		_OutlineColor ("Color", Color) = (0.1, 0.1, 0.1, 1)
 		_OutlineBlendColorTexture ("Blend Diffuse Texture", Range(0.0, 1.0)) = 1.0
-		[ScaledRangeParam(0.0, 1.0)]_OutlineSize ("Thickness", Range(0.0, 0.05)) = 0.01
+		[ScaledRangeParam(0.0, 1.0)] _OutlineSize ("Thickness", Range(0.0, 0.05)) = 0.01
 		_OutlineCameraDistanceAdaptRate ("Adaptive Thickness", Range(0.0, 1.0)) = 1.0
-		[MaterialToggle] _OutlineWriteZ ("Enable Inner Side Outline", Float) = 1.0
-		[MaterialToggle] _OutlineUseRVertexColor ("Thickness Using VertexColor (red)", Float) = 0
+		[MaterialToggle] _OutlineWriteZ ("Write Depth", Float) = 1.0
+		[ScaledRangeParam(0.0, 1.0)] _OutlineZOffset ("Z Offset", Range(0.0, 0.00015)) = 0.0
+		[MaterialToggle] _OutlineUseRVertexColor ("Thickness Using VertexColor (red)", Float) = 0.0
 
 		// Hatch parameters
 		[Header(Hatch)]
@@ -92,8 +97,8 @@ Shader "Kayac/Kamakura-Hair"
 		// Rim-light parameters
 		[Header(Rim)]
 		[Toggle(KAMAKURA_RIM_ON)] _EnableRim ("Enable", Float) = 0.0
-		[KeywordEnum(Additive, Blend)]_RimBlendingMode ("Blend Mode", Float) = 0.0
-		_RimColor ("Color", Color) = (1, 1, 1, 1)
+		[KeywordEnum(Additive, Normal)]_RimBlendingMode ("Blend Mode", Float) = 0.0
+		_RimColor ("Color", Color) = (1.0, 1.0, 1.0, 1.0)
 		_RimSize ("Size", Range(0, 1)) = 0.3
 		_RimIntensity ("Intensity", Range(0.01, 1)) = 0.3
 		_RimSoftness ("Softness", Range(0.01, 1)) = 0.3

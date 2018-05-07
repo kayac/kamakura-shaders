@@ -9,7 +9,7 @@ Material:
   m_Name: Skin
   m_Shader: {fileID: 4800000, guid: d7730c2ef84884dacab76d02c257d58d, type: 3}
   m_ShaderKeywords: KAMAKURA_FILTER_ON KAMAKURA_RIM_ON KAMAKURA_SHADOWMOD_ON _EMISSION
-    _RIMBLENDINGMODE_ADDITIVE
+    _ENABLEOUTLINE_ON _RIMBLENDINGMODE_ADDITIVE
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -94,7 +94,7 @@ Material:
     - _AmbientIntensity: 0
     - _AmbientUnitySHIntensity: 0
     - _AmbientUseCubeColor: 0
-    - _BlendMode: 0
+    - _BlendMode: 8
     - _BumpScale: 1
     - _CubeColorUseLocalSpace: 0
     - _CullMode: 2
@@ -109,7 +109,7 @@ Material:
     - _EnableHatch: 0
     - _EnableLocalLight: 0
     - _EnableNormal: 0
-    - _EnableOutline: 0
+    - _EnableOutline: 1
     - _EnableRim: 1
     - _EnableShadowMod: 1
     - _FilterBrightness: 1
@@ -121,6 +121,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _HatchBlendMode: 0
     - _HatchIntensity: 0.51
     - _HatchOffset: 0.17
     - _HatchRangeStretch: 1.64
@@ -136,19 +137,22 @@ Material:
     - _LocalLightVecAsMain: 0
     - _Metallic: 0
     - _Mode: 0
+    - _NormalIntensity: 1
     - _OcclusionStrength: 1
     - _OutlineBlendColorTexture: 1
     - _OutlineCameraDistanceAdaptRate: 0
     - _OutlineNormalTweak: 0
-    - _OutlineSize: 0.0025000002
+    - _OutlineSize: 0.0050000004
     - _OutlineUseRVertexColor: 0
     - _OutlineWriteZ: 0
+    - _OutlineZOffset: 0
     - _Parallax: 0.02
     - _RimBlendingMode: 0
     - _RimIntensity: 0.2
     - _RimSize: 0.53
     - _RimSoftness: 0.2
     - _RimUseCubeColor: 0
+    - _ShadowModBlendMode: 0
     - _ShadowModIntensity: 1
     - _ShadowModRimUseDiffuseTexture: 0
     - _ShadowModSpecularUseDiffuseTexture: 0

@@ -198,7 +198,7 @@ namespace Kayac.VisualArts
 
 			if (tex == null)
 			{
-				tex = new Texture2D(rampObj.width, rampObj.gradients.Length, TextureFormat.RGB24, false);
+				tex = new Texture2D(rampObj.width, rampObj.gradients.Length, TextureFormat.RGBA32, false);
 				tex.wrapMode = TextureWrapMode.Clamp;
 				tex.name = "RampTexture";
 				AssetDatabase.AddObjectToAsset(tex, path);

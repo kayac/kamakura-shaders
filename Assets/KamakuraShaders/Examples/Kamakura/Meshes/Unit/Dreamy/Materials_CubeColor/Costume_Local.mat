@@ -9,7 +9,7 @@ Material:
   m_Name: Costume_Local
   m_Shader: {fileID: 4800000, guid: d7730c2ef84884dacab76d02c257d58d, type: 3}
   m_ShaderKeywords: KAMAKURA_CUBECOLOR_ON KAMAKURA_OUTLINE_ON KAMAKURA_RIM_ON KAMAKURA_SHADOWMOD_ON
-    _OUTLINEWRITEZ_ON _RIMBLENDINGMODE_ADDITIVE _RIMUSECUBECOLOR_ON
+    _ENABLEOUTLINE_ON _OUTLINEWRITEZ_ON _RIMBLENDINGMODE_ADDITIVE _RIMUSECUBECOLOR_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -94,7 +94,7 @@ Material:
     - _AmbientIntensity: 0.5
     - _AmbientUnitySHIntensity: 0
     - _AmbientUseCubeColor: 0
-    - _BlendMode: 0
+    - _BlendMode: 8
     - _BumpScale: 1
     - _CubeColorUseLocalSpace: 1
     - _CullMode: 2
@@ -120,6 +120,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _HatchBlendMode: 0
     - _HatchIntensity: 0
     - _HatchOffset: 0
     - _HatchRangeStretch: 1
@@ -134,6 +135,7 @@ Material:
     - _LocalLightVecAsMain: 0
     - _Metallic: 0
     - _Mode: 0
+    - _NormalIntensity: 1
     - _OcclusionStrength: 1
     - _OutlineBlendColorTexture: 1
     - _OutlineCameraDistanceAdaptRate: 1
@@ -141,12 +143,14 @@ Material:
     - _OutlineSize: 0.001
     - _OutlineUseRVertexColor: 0
     - _OutlineWriteZ: 1
+    - _OutlineZOffset: 0
     - _Parallax: 0.02
     - _RimBlendingMode: 0
     - _RimIntensity: 1
     - _RimSize: 0.6
     - _RimSoftness: 0.01
     - _RimUseCubeColor: 1
+    - _ShadowModBlendMode: 0
     - _ShadowModIntensity: 1
     - _ShadowModUseFilter: 0
     - _SmoothnessTextureChannel: 0
