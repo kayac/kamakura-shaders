@@ -163,8 +163,7 @@ Shader "Hidden/Kayac/KamakuraPassesStandard"
 			#pragma shader_feature _ KAMAKURA_EMISSION_ON
 			#pragma shader_feature _ KAMAKURA_LOCALLIGHT_ON
 
-			//// disabled due to Unity 2018.1.0f2 bug
-			// #pragma multi_compile_fwdadd
+			#pragma multi_compile_fwdadd
 			#pragma multi_compile_instancing
 
 			#pragma target 3.0
@@ -251,8 +250,7 @@ Shader "Hidden/Kayac/KamakuraPassesStandard"
 			#pragma shader_feature _ KAMAKURA_SHADOWMOD_ON
 			#pragma shader_feature _ KAMAKURA_LOCALLIGHT_ON
 
-			//// disabled due to Unity 2018.1.0f2 bug
-			// #pragma multi_compile_fwdadd
+			#pragma multi_compile_fwdadd
 			#pragma multi_compile_instancing
 
 			#pragma target 3.0

@@ -4,7 +4,7 @@ Shader "Kayac/Kamakura"
 	Properties
 	{
 		[Header(About)]
-		[KamakuraShaderVersion] _ShaderVersion ("_ShaderVersion", Vector) = (1, 0, 5, -1)
+		[KamakuraShaderVersion] _ShaderVersion ("_ShaderVersion", Vector) = (1, 0, 6, -1)
 
 		[Header(Basic)]
 		_DiffuseColor ("Diffuse Color", Color) = (1.0, 1.0, 1.0, 1.0)
