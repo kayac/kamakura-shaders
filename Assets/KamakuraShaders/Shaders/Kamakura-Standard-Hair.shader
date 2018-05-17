@@ -3,7 +3,7 @@ Shader "Kayac/Kamakura-Hair"
 	Properties
 	{
 		[Header(About)]
-		[KamakuraShaderVersion] _ShaderVersion ("_ShaderVersion", Vector) = (1, 0, 6, -1)
+		[KamakuraShaderVersion] _ShaderVersion ("_ShaderVersion", Vector) = (1, 0, 7, -1)
 
 		[Header(Basic)]
 		_DiffuseColor("Diffuse Color", Color) = (1, 1, 1, 1)
