@@ -52,8 +52,7 @@ namespace Kayac.VisualArts
 		public bool useLocalLightForSpecular = false;
 		public Color localLightColor = Color.white;
 
-
-		private List<Renderer> _renderers;
+		public List<Renderer> renderers { get; private set; }
 
 		[HideInInspector]
 		[SerializeField]
@@ -71,29 +70,32 @@ namespace Kayac.VisualArts
 		const string LightIntensityPropName = "_LocalLightIntensity";
 		const string GlobalLightIntensityPropName = "_GlobalLightIntensity";
 		const string UseLocalLightForSpecularPropName = "_LocalLightVecAsMain";
-		const string LocalLightSymbol = "KAMAKURA_LOCALLIGHT_ON";
 
-
+		MaterialPropertyBlock _tempPropBlock;
 		bool _needsUpdate;
 
 		void OnEnable()
 		{
+			if (_tempPropBlock == null)
+			{
+				_tempPropBlock = new MaterialPropertyBlock();
+			}
 			UpdateHierarchicalIntegrity();
 		}
 
 		void UpdateHierarchicalIntegrity()
 		{
-			_renderers = new List<Renderer>();
-			IncludeChildren(transform, _renderers);
-			ExcludeFromParent(transform, _renderers);
+			renderers = new List<Renderer>();
+			IncludeChildren(transform, renderers);
+			ExcludeFromParent(transform, renderers);
 			_needsUpdate = true;
 			rotation = _rotationVector.eulerAngles;
 		}
 
 		void OnDisable()
 		{
-			TransferToParent(transform, _renderers);
-			_renderers = null;
+			TransferToParent(transform, renderers);
+			renderers = null;
 		}
 
 		void IncludeChildren(Transform t, List<Renderer> renderers)
@@ -106,7 +108,7 @@ namespace Kayac.VisualArts
 			foreach (Transform childT in t)
 			{
 				var childComponent = childT.GetComponent<LocalLight>();
-				if (childComponent == null || childComponent._renderers == null || childComponent._renderers.Count == 0)
+				if (childComponent == null || childComponent.renderers == null || childComponent.renderers.Count == 0)
 				{
 					IncludeChildren(childT, renderers);
 				}
@@ -147,9 +149,9 @@ namespace Kayac.VisualArts
 
 		bool IncludeRenderers(List<Renderer> renderers)
 		{
-			if (_renderers != null)
+			if (this.renderers != null)
 			{
-				_renderers.AddRange(renderers);
+				this.renderers.AddRange(renderers);
 				_needsUpdate = true;
 				renderers.Clear();
 				Update();
@@ -161,9 +163,9 @@ namespace Kayac.VisualArts
 
 		void ExcludeRenderers(List<Renderer> renderers)
 		{
-			if (_renderers != null)
+			if (this.renderers != null)
 			{
-				_renderers.RemoveAll(r => {
+				this.renderers.RemoveAll(r => {
 					var removeRenderer = renderers.Contains(r);
 					return removeRenderer;
 				});
@@ -175,22 +177,15 @@ namespace Kayac.VisualArts
 			var rs = renderers.GetEnumerator();
 			while (rs.MoveNext())
 			{
-				var materials = rs.Current.sharedMaterials;
-				if (materials == null)
-				{
-					continue;
-				}
-				for (int i = 0; i < materials.Length; ++i)
-				{
-					if (materials[i] != null && materials[i].HasProperty(LightVectorPropName))
-					{
-						if (materials[i].IsKeywordEnabled(LocalLightSymbol))
-						{
-							materials[i].DisableKeyword(LocalLightSymbol);
-							materials[i].SetFloat(GlobalLightIntensityPropName, 1);
-						}
-					}
-				}
+				var renderer = rs.Current;
+				_tempPropBlock.Clear();
+				renderer.GetPropertyBlock(_tempPropBlock);
+				_tempPropBlock.SetFloat(UseLocalLightForSpecularPropName, 0.0f);
+				_tempPropBlock.SetFloat(GlobalLightIntensityPropName, 1.0f);
+				_tempPropBlock.SetFloat(LightIntensityPropName, localLightIntensity);
+				_tempPropBlock.SetVector(LightVectorPropName, Vector4.zero);
+				_tempPropBlock.SetVector(LightColorPropName, Vector4.zero);
+				renderer.SetPropertyBlock(_tempPropBlock);
 			}
 		}
 
@@ -214,32 +209,18 @@ namespace Kayac.VisualArts
 
 		void SetMaterialsLightVector(Renderer renderer, float globalLightIntensity, Vector3 lightVector, Color lightColor, bool useLocalLightForSpecular)
 		{
-			var materials = renderer.sharedMaterials;
-			if (materials == null)
-			{
-				return;
-			}
-			for (int i = 0; i < materials.Length; ++i)
-			{
-				if (materials[i] != null && materials[i].HasProperty(LightVectorPropName))
-				{
-					if (!materials[i].IsKeywordEnabled(LocalLightSymbol))
-					{
-						materials[i].EnableKeyword(LocalLightSymbol);
-					}
-					materials[i].SetFloat(UseLocalLightForSpecularPropName, useLocalLightForSpecular ? 1.0f : 0.0f);
-					materials[i].SetFloat(GlobalLightIntensityPropName, globalLightIntensity);
-					materials[i].SetFloat(LightIntensityPropName, localLightIntensity);
-					materials[i].SetVector(LightVectorPropName, lightVector);
-					materials[i].SetVector(LightColorPropName, lightColor);
-				}
-			}
+			_tempPropBlock.Clear();
+			renderer.GetPropertyBlock(_tempPropBlock);
+			_tempPropBlock.SetFloat(UseLocalLightForSpecularPropName, useLocalLightForSpecular ? 1.0f : 0.0f);
+			_tempPropBlock.SetFloat(GlobalLightIntensityPropName, globalLightIntensity);
+			_tempPropBlock.SetFloat(LightIntensityPropName, localLightIntensity);
+			_tempPropBlock.SetVector(LightVectorPropName, lightVector);
+			_tempPropBlock.SetVector(LightColorPropName, lightColor);
+			renderer.SetPropertyBlock(_tempPropBlock);
 		}
 
 		public void Update ()
 		{
-			// UniformSphereDist(samples);
-
 			_rotationVector = Quaternion.Euler(rotation.x, rotation.y, rotation.z);
 			if (!_needsUpdate && totalRotationVector != _appliedRotationVector)
 			{
@@ -270,7 +251,7 @@ namespace Kayac.VisualArts
 			{
 				_needsUpdate = false;
 				Vector3 lightVector = totalRotationVector * Vector3.back;
-				var renderers = _renderers.GetEnumerator();
+				var renderers = this.renderers.GetEnumerator();
 				while (renderers.MoveNext())
 				{
 					SetMaterialsLightVector(renderers.Current, globalLightIntensity, lightVector, localLightColor, useLocalLightForSpecular);

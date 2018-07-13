@@ -4,7 +4,7 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Hair_Paint
   m_Shader: {fileID: 4800000, guid: c193f53d99e244e9db666eda7a7e0d56, type: 3}
@@ -105,6 +105,7 @@ Material:
     - _EnableCubeColor: 0
     - _EnableFilter: 0
     - _EnableHatch: 0
+    - _EnableLocalLight: 0
     - _EnableOutline: 1
     - _EnableRim: 1
     - _EnableShadowMod: 1
@@ -128,7 +129,7 @@ Material:
     - _LightRampOffset: 0
     - _LightRampPresetsOffset: 0.73
     - _LightRampUseGVertexColor: 0
-    - _LocalLightIntensity: 1
+    - _LocalLightIntensity: 0
     - _LocalLightVecAsMain: 0
     - _Metallic: 0
     - _Mode: 0
@@ -198,7 +199,7 @@ Material:
     - _Hatch1Color: {r: 0, g: 0, b: 0, a: 1}
     - _Hatch2Color: {r: 0, g: 0, b: 0, a: 1}
     - _Hatch3Color: {r: 0, g: 0, b: 0, a: 1}
-    - _LocalLightColor: {r: 0, g: 0, b: 0, a: 1}
+    - _LocalLightColor: {r: 0, g: 0, b: 0, a: 0}
     - _LocalLightVec: {r: 1, g: 0, b: 0, a: 0}
     - _OutlineColor: {r: 0.21323532, g: 0.21323532, b: 0.21323532, a: 1}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}

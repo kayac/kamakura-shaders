@@ -16,7 +16,9 @@ namespace Kayac.VisualArts
 		const string LocalSpaceMatrixRow1 = "_CubeColorLocalSpaceMatrixRow1";
 		const string LocalSpaceMatrixRow2 = "_CubeColorLocalSpaceMatrixRow2";
 
+		MaterialPropertyBlock _tempPropBlock;
 		private Transform _trs;
+
 
 		bool _needsUpdate;
 
@@ -25,6 +27,10 @@ namespace Kayac.VisualArts
 			if (_trs == null)
 			{
 				_trs = transform;
+			}
+			if (_tempPropBlock == null)
+			{
+				_tempPropBlock = new MaterialPropertyBlock();
 			}
 			UpdateHierarchicalIntegrity();
 		}
@@ -48,7 +54,6 @@ namespace Kayac.VisualArts
 			var renderer = t.GetComponent<Renderer>();
 			if (renderer != null)
 			{
-				// Debug.Log(name + " Adds +" + renderer.name);
 				renderers.Add(renderer);
 			}
 			foreach (Transform childT in t)
@@ -63,7 +68,6 @@ namespace Kayac.VisualArts
 
 		void ExcludeFromParent(Transform t, List<Renderer> renderers)
 		{
-			// Debug.Log(name + " ExcludeFromParent");
 			Transform parentT = t.parent;
 			CubeColorLocalSpaceRoot parentComponent = null;
 			while (parentT != null)
@@ -79,7 +83,6 @@ namespace Kayac.VisualArts
 
 		void TransferToParent(Transform t, List<Renderer> renderers)
 		{
-			// Debug.Log(name + " TransferToParent");
 			Transform parentT = t.parent;
 			CubeColorLocalSpaceRoot parentComponent = null;
 			while (parentT != null && parentComponent == null)
@@ -115,8 +118,6 @@ namespace Kayac.VisualArts
 			{
 				_renderers.RemoveAll(r => {
 					var removeRenderer = renderers.Contains(r);
-					// if (removeRenderer)
-						// Debug.Log(name + " Removes -" + r.name);
 					return removeRenderer;
 				});
 			}
@@ -151,25 +152,16 @@ namespace Kayac.VisualArts
 
 		void SetMaterialsLocalSpaceMatrix(Renderer renderer, Matrix4x4 localSpaceMatrix, bool useLocalSpace = true)
 		{
-			var materials = renderer.sharedMaterials;
-			if (materials == null)
-			{
-				return;
-			}
-			for (int i = 0; i < materials.Length; ++i)
-			{
-				if (materials[i] != null)
-				{
-					Vector3 row0 = localSpaceMatrix.GetRow(0);
-					Vector3 row1 = localSpaceMatrix.GetRow(1);
-					Vector3 row2 = localSpaceMatrix.GetRow(2);
-					var mat = materials[i];
-					mat.SetVector(LocalSpaceMatrixRow0, row0);
-					mat.SetVector(LocalSpaceMatrixRow1, row1);
-					mat.SetVector(LocalSpaceMatrixRow2, row2);
-					mat.SetFloat(LocalSpaceMatrixFlag, useLocalSpace ? 1.0f : 0.0f);
-				}
-			}
+			_tempPropBlock.Clear();
+			renderer.GetPropertyBlock(_tempPropBlock);
+			Vector3 row0 = localSpaceMatrix.GetRow(0);
+			Vector3 row1 = localSpaceMatrix.GetRow(1);
+			Vector3 row2 = localSpaceMatrix.GetRow(2);
+			_tempPropBlock.SetVector(LocalSpaceMatrixRow0, row0);
+			_tempPropBlock.SetVector(LocalSpaceMatrixRow1, row1);
+			_tempPropBlock.SetVector(LocalSpaceMatrixRow2, row2);
+			_tempPropBlock.SetFloat(LocalSpaceMatrixFlag, useLocalSpace ? 1.0f : 0.0f);
+			renderer.SetPropertyBlock(_tempPropBlock);
 		}
 
 

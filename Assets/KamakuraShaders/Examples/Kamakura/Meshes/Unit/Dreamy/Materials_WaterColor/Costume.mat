@@ -4,7 +4,7 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Costume
   m_Shader: {fileID: 4800000, guid: d7730c2ef84884dacab76d02c257d58d, type: 3}
@@ -107,6 +107,7 @@ Material:
     - _EnableEmission: 0
     - _EnableFilter: 0
     - _EnableHatch: 1
+    - _EnableLocalLight: 0
     - _EnableNormal: 0
     - _EnableOutline: 1
     - _EnableRim: 0
@@ -131,7 +132,7 @@ Material:
     - _LightRampOffset: 0
     - _LightRampPresetsOffset: 0.77
     - _LightRampUseGVertexColor: 0
-    - _LocalLightIntensity: 1
+    - _LocalLightIntensity: 0
     - _LocalLightVecAsMain: 0
     - _Metallic: 0
     - _Mode: 0
@@ -183,7 +184,7 @@ Material:
     - _Hatch1Color: {r: 0, g: 1, b: 0.91724133, a: 1}
     - _Hatch2Color: {r: 0.48183993, g: 0.30655277, b: 0.9264706, a: 1}
     - _Hatch3Color: {r: 0.09351205, g: 0.030493086, b: 0.3455882, a: 1}
-    - _LocalLightColor: {r: 0, g: 0, b: 0, a: 1}
+    - _LocalLightColor: {r: 0, g: 0, b: 0, a: 0}
     - _LocalLightVec: {r: 1, g: 0, b: 0, a: 0}
     - _OutlineColor: {r: 0.38235295, g: 0.38235295, b: 0.38235295, a: 1}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}

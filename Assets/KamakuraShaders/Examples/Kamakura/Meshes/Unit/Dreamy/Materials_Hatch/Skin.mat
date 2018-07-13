@@ -4,7 +4,7 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Skin
   m_Shader: {fileID: 4800000, guid: d7730c2ef84884dacab76d02c257d58d, type: 3}
@@ -94,6 +94,7 @@ Material:
     - _AmbientIntensity: 0.5
     - _AmbientUnitySHIntensity: 0
     - _AmbientUseCubeColor: 0
+    - _AutoAdjustRenderQueue: 0
     - _BlendMode: 8
     - _BumpScale: 1
     - _CubeColorUseLocalSpace: 0
@@ -133,7 +134,7 @@ Material:
     - _LightRampPresetsOffset: 0.6
     - _LightRampUseGVertexColor: 0
     - _LocalLightGlobalLightIntensity: 1
-    - _LocalLightIntensity: 1
+    - _LocalLightIntensity: 0
     - _LocalLightVecAsMain: 0
     - _Metallic: 0
     - _Mode: 0
@@ -145,12 +146,13 @@ Material:
     - _OutlineSize: 0.0050000004
     - _OutlineUseRVertexColor: 0
     - _OutlineWriteZ: 0
-    - _OutlineZOffset: 0
+    - _OutlineZOffset: 0.000075
     - _Parallax: 0.02
     - _RimBlendingMode: 0
     - _RimIntensity: 0.3
     - _RimSize: 0.3
     - _RimSoftness: 0.3
+    - _RimUnitySHIntensity: 0
     - _RimUseCubeColor: 0
     - _ShadowModBlendMode: 0
     - _ShadowModIntensity: 1
@@ -194,9 +196,10 @@ Material:
     - _Hatch1Color: {r: 0.28676465, g: 0.28676465, b: 0.28676465, a: 1}
     - _Hatch2Color: {r: 0.13235292, g: 0.13235292, b: 0.13235292, a: 1}
     - _Hatch3Color: {r: 0, g: 0, b: 0, a: 1}
-    - _LocalLightColor: {r: 0, g: 0, b: 0, a: 1}
+    - _LocalLightColor: {r: 0, g: 0, b: 0, a: 0}
     - _LocalLightVec: {r: 1, g: 0, b: 0, a: 0}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _PatchData: {r: 0, g: 0, b: 0, a: 0}
     - _RimColor: {r: 1, g: 0.75735295, b: 0.75735295, a: 1}
     - _ShaderVersion: {r: 0, g: 8, b: 5, a: 0}
     - _ShadowModColor: {r: 1, g: 1, b: 1, a: 1}

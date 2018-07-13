@@ -63,8 +63,8 @@ Shader "Hidden/Kayac/KamakuraPassesStandard"
 		{
 			Name "Outline"
 			Cull Front
-			ZTest Less
-			ZWrite [_OutlineWriteZ]
+			ZTest LEqual
+			ZWrite On
 
 			Stencil
 			{

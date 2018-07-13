@@ -15,11 +15,17 @@ namespace Kayac.VisualArts
 		{
 			_oldSerializedName = oldSerializedName;
 		}
-		// Draw the property inside the given rect
+
 		public override void OnGUI (Rect position, MaterialProperty prop, String label, MaterialEditor editor)
 		{
 			Apply(prop);
 		}
+
+		public override float GetPropertyHeight(MaterialProperty prop, string label, MaterialEditor editor)
+		{
+			return 0;
+		}
+
 
 		private HashSet<int> _cachedId = new HashSet<int>();
 

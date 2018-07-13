@@ -14,29 +14,16 @@ namespace Kayac.VisualArts
 
 	public class KamakuraShaderGUI : ShaderGUI
 	{
-		static Dictionary<string, string> _dict = new Dictionary<string, string>
-		{
-			{"_EnableShadowMod", "_ShadowMod"},
-			{"_EnableHatch", "_Hatch"},
-			{"_EnableRim", "_Rim"},
-			{"_EnableOutline", "_Outline"},
-			{"_EnableCubeColor", "_CubeColor"},
-			{"_EnableNormal", "_Normal"},
-			{"_EnableEmission", "_Emission"},
-			{"_EnableFilter", "_Filter"},
-		};
-
 		static bool _selectPropertyMode = false;
-
 		static SelectionMode _selectionMode;
 		static HashSet<string> _selectedProperties = new HashSet<string>();
 		static int _selectablePropertyCount;
 		static Dictionary<string, MaterialProperty> _copiedProperties = new Dictionary<string, MaterialProperty>();
+		static Dictionary<string, string> _cachedDisabledPropHeader = new Dictionary<string, string>();
 		static HashSet<string> _currentMaterialSelectedProps = new HashSet<string>();
+		static MaterialKSFlagsDecorator _defaultFlags = new MaterialKSFlagsDecorator("");
 
-		public static readonly VersionDescriptor Version;
-
-		static GUIStyle RichLabel;
+		Dictionary<string, HashSet<string>> _cachedPropGroups;
 
 		enum SelectionMode
 		{
@@ -51,26 +38,10 @@ namespace Kayac.VisualArts
 		[MenuItem("Kayac/Kamakura Shaders/Version", false, 9001)]
 		static void ShowVersion()
 		{
-			EditorUtility.DisplayDialog("About Kamakura Shaders", "Version " + Version.ToString(), "Close");
+			EditorUtility.DisplayDialog("About Kamakura Shaders", "Version " + VersionDescriptor.Instance.ToString(), "Close");
 		}
 
 		private ShaderReflectionHelper _reflectionHelper;
-
-
-		static KamakuraShaderGUI()
-		{
-			var verGuids = AssetDatabase.FindAssets("t:kayac.visualarts.versiondescriptor");
-			if (verGuids.Length == 1)
-			{
-				var path = AssetDatabase.GUIDToAssetPath(verGuids[0]);
-				Version = AssetDatabase.LoadAssetAtPath<VersionDescriptor>(path);
-			}
-			else
-			{
-				Version = new VersionDescriptor();
-				Version.SetVersion(1, 0, 5);
-			}
-		}
 
 		public KamakuraShaderGUI()
 		{
@@ -82,7 +53,7 @@ namespace Kayac.VisualArts
 			EditorGUILayout.BeginHorizontal();
 			EditorGUILayout.BeginVertical();
 			_selectPropertyMode = EditorGUILayout.Toggle("Select Mode", _selectPropertyMode);
-			if (_selectPropertyMode)
+			using (var disabledScope = new EditorGUI.DisabledGroupScope(!_selectPropertyMode))
 			{
 				int selectionCount = _selectedProperties.Count;
 				int copiedPropCount = _copiedProperties.Count;
@@ -91,7 +62,7 @@ namespace Kayac.VisualArts
 			}
 			EditorGUILayout.EndVertical();
 			_selectionMode = SelectionMode.None;
-			if (_selectPropertyMode)
+			using (var disabledScope = new EditorGUI.DisabledGroupScope(!_selectPropertyMode))
 			{
 				EditorGUILayout.BeginVertical();
 				if (GUILayout.Button("Select All")) { _selectedProperties.Clear(); _selectionMode = SelectionMode.SelectAll; }
@@ -104,22 +75,54 @@ namespace Kayac.VisualArts
 			EditorGUILayout.EndHorizontal();
 		}
 
+		void UpdateSelectionPropsWithHeader(string propName, MaterialProperty[] props, bool isSelected)
+		{
+			if (isSelected)
+			{
+				_selectedProperties.UnionWith(_cachedPropGroups[propName]);
+			}
+			else
+			{
+				_selectedProperties.RemoveWhere(n => _cachedPropGroups[propName].Contains(n));
+			}
+		}
+
+		void InitCachedPropGroups(MaterialProperty[] properties, Material material)
+		{
+			if (_cachedPropGroups != null) { return; }
+			_cachedPropGroups = new Dictionary<string, HashSet<string>>();
+			HashSet<string> propGroup = null;
+			foreach (var prop in properties)
+			{
+				if (prop.flags == MaterialProperty.PropFlags.HideInInspector || prop.flags == MaterialProperty.PropFlags.PerRendererData)
+				{
+					continue;
+				}
+				if (propGroup == null || _reflectionHelper.IsHeader(prop, material.shader))
+				{
+					propGroup = new HashSet<string>();
+				}
+				propGroup.Add(prop.name);
+				_cachedPropGroups[prop.name] = propGroup;
+			}
+		}
+
 		public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] properties)
 		{
 			Material material = materialEditor.target as Material;
 			var materials = materialEditor.targets.Cast<Material>();
 
-			RichLabel = new GUIStyle(EditorStyles.boldLabel);
-			RichLabel.richText = true;
+			InitCachedPropGroups(properties, material);
 
 			EditorGUI.BeginChangeCheck();
 			DrawSelectionMode();
 			var updateSelectionMode = EditorGUI.EndChangeCheck();
 
-			string disabledPropHeader = "N/A";
+			string disabledPropHeader = "*";
 			bool insideBoxLayout = false;
 			_currentMaterialSelectedProps.Clear();
 			_selectablePropertyCount = 0;
+			string propHeader = null;
 
 			foreach (var prop in properties)
 			{
@@ -127,8 +130,6 @@ namespace Kayac.VisualArts
 				{
 					continue;
 				}
-
-				string propHeader = null;
 
 				if (_reflectionHelper.IsHeader(prop, material.shader))
 				{
@@ -143,19 +144,25 @@ namespace Kayac.VisualArts
 					insideBoxLayout = true;
 				}
 
-				if (_dict.TryGetValue(prop.name, out propHeader))
+				var propFlagsHolder = _reflectionHelper.GetPropertyDrawer<MaterialKSFlagsDecorator>(prop, material.shader) ?? _defaultFlags;
+				var selectable = !propFlagsHolder.IsFlagSet(KSFlags.NonSelectable);
+				bool wasSelected = false;
+
+				if (propFlagsHolder.IsFlagSet(KSFlags.EnableFlag))
 				{
+					if (!_cachedDisabledPropHeader.TryGetValue(prop.name, out propHeader))
+					{
+						propHeader = prop.name.Replace("_Enable", "_");
+						_cachedDisabledPropHeader[prop.name] = propHeader;
+					}
 					bool isParamPropEnabled = !Mathf.Approximately(prop.floatValue, 0f);
-					disabledPropHeader = isParamPropEnabled ? "N/A" : propHeader;
+					disabledPropHeader = isParamPropEnabled ? "*" : propHeader;
 				}
 
-				var selectable = prop.name != "_ShaderVersion";
-				bool wasSelected = false;
-				bool selectAll = _selectionMode == SelectionMode.SelectAll;
 
 				if (_selectPropertyMode && selectable)
 				{
-					if (selectAll)
+					if (_selectionMode == SelectionMode.SelectAll)
 					{
 						_selectedProperties.Add(prop.name);
 					}
@@ -167,8 +174,8 @@ namespace Kayac.VisualArts
 					}
 				}
 
-				var isDisabled = prop.name.StartsWith(disabledPropHeader);
 
+				var isDisabled = prop.name.StartsWith(disabledPropHeader, System.StringComparison.Ordinal);
 				if (isDisabled)
 				{
 					continue;
@@ -187,6 +194,10 @@ namespace Kayac.VisualArts
 					{
 						_selectedProperties.Remove(prop.name);
 					}
+					if (isSelected != wasSelected && Event.current.alt)
+					{
+						UpdateSelectionPropsWithHeader(prop.name, properties, isSelected);
+					}
 					GUI.color = Color.white;
 				}
 				else
@@ -194,6 +205,7 @@ namespace Kayac.VisualArts
 					EditorGUILayout.BeginHorizontal();
 				}
 
+				MaterialPropertyUtils.BeginChangeCheck(prop);
 				if (prop.name.Contains("UseCubeColor"))
 				{
 					var disabled = materials.Any(m => m.GetFloat("_EnableCubeColor") == 0);
@@ -205,6 +217,16 @@ namespace Kayac.VisualArts
 				else
 				{
 					materialEditor.ShaderProperty(prop, prop.displayName);
+				}
+				var propChanged = MaterialPropertyUtils.EndChangeCheck();
+
+				if (propChanged && propFlagsHolder.IsFlagSet(KSFlags.AutoRenderQueue) && !prop.hasMixedValue && prop.floatValue > 0f)
+				{
+					foreach (var mat in materials)
+					{
+						var blendMode = (KamakuraBlendMode)(int)mat.GetFloat("_BlendMode");
+						MaterialBlendModeUtils.SetMaterialBlendMode(mat, blendMode, true);
+					}
 				}
 
 				EditorGUILayout.EndHorizontal();
@@ -278,6 +300,43 @@ namespace Kayac.VisualArts
 					_copiedProperties.Clear();
 				}
 			}
+		}
+	}
+
+	public static class MaterialPropertyUtils
+	{
+
+		static MaterialProperty _target;
+
+		static bool _hasMixedValue;
+		static float _floatValue;
+		static Vector4 _vectorValue;
+		static Color _colorValue;
+		static Texture _textureValue;
+		static Vector4 _textureScaleAndOffsetValue;
+
+		public static void BeginChangeCheck(MaterialProperty prop)
+		{
+			_target = prop;
+			_hasMixedValue = prop.hasMixedValue;
+			_floatValue   = prop.floatValue;
+			_colorValue   = prop.colorValue;
+			_vectorValue  = prop.vectorValue;
+			_textureValue = prop.textureValue;
+			_textureScaleAndOffsetValue = prop.textureScaleAndOffset;
+		}
+
+		public static bool EndChangeCheck()
+		{
+			if (_target == null) { return false; }
+			var changed = _hasMixedValue != _target.hasMixedValue
+				|| _floatValue != _target.floatValue
+				|| _vectorValue != _target.vectorValue
+				|| _colorValue != _target.colorValue
+				|| _textureValue != _target.textureValue
+				|| _textureScaleAndOffsetValue != _target.textureScaleAndOffset;
+			_target = null;
+			return changed;
 		}
 	}
 

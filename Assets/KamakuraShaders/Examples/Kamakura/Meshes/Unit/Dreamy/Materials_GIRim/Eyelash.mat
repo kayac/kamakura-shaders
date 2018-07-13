@@ -4,12 +4,12 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Costume_Global
+  m_Name: Eyelash
   m_Shader: {fileID: 4800000, guid: d7730c2ef84884dacab76d02c257d58d, type: 3}
-  m_ShaderKeywords: KAMAKURA_CUBECOLOR_ON KAMAKURA_OUTLINE_ON KAMAKURA_RIM_ON KAMAKURA_SHADOWMOD_ON
-    _ENABLEOUTLINE_ON _OUTLINEWRITEZ_ON _RIMBLENDINGMODE_ADDITIVE _RIMUSECUBECOLOR_ON
+  m_ShaderKeywords: KAMAKURA_LOCALLIGHT_ON _HATCHBLENDMODE_NORMAL _OUTLINEWRITEZ_ON
+    _RIMBLENDINGMODE_ADDITIVE _SHADOWMODBLENDMODE_NORMAL
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -82,7 +82,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ShadowModTex:
-        m_Texture: {fileID: 2800000, guid: f23e74e4cb4acb141866c588840ba4b6, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecularTex:
@@ -94,23 +94,25 @@ Material:
     - _AmbientIntensity: 0.5
     - _AmbientUnitySHIntensity: 0
     - _AmbientUseCubeColor: 0
+    - _AutoAdjustRenderQueue: 0
     - _BlendMode: 8
     - _BumpScale: 1
-    - _CubeColorUseLocalSpace: 1
+    - _CubeColorUseLocalSpace: 0
     - _CullMode: 2
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EmissionPower: 0.5
-    - _EnableCubeColor: 1
+    - _EnableCubeColor: 0
     - _EnableCutout: 0
     - _EnableEmission: 0
     - _EnableFilter: 0
     - _EnableHatch: 0
+    - _EnableLocalLight: 1
     - _EnableNormal: 0
-    - _EnableOutline: 1
-    - _EnableRim: 1
-    - _EnableShadowMod: 1
+    - _EnableOutline: 0
+    - _EnableRim: 0
+    - _EnableShadowMod: 0
     - _FilterBrightness: 1
     - _FilterContrast: 1
     - _FilterContrastMidPoint: 0.5
@@ -131,7 +133,7 @@ Material:
     - _LightRampOffset: 0
     - _LightRampPresetsOffset: 1
     - _LightRampUseGVertexColor: 0
-    - _LocalLightIntensity: 1
+    - _LocalLightIntensity: 0
     - _LocalLightVecAsMain: 0
     - _Metallic: 0
     - _Mode: 0
@@ -147,46 +149,48 @@ Material:
     - _Parallax: 0.02
     - _RimBlendingMode: 0
     - _RimIntensity: 1
-    - _RimSize: 0.6
+    - _RimSize: 0.5
     - _RimSoftness: 0.01
-    - _RimUseCubeColor: 1
+    - _RimUnitySHIntensity: 0
+    - _RimUseCubeColor: 0
     - _ShadowModBlendMode: 0
     - _ShadowModIntensity: 1
     - _ShadowModUseFilter: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _SpecularIntensity: 0.064
+    - _SpecularIntensity: 0
     - _SpecularPower: 10
     - _SpecularSmoothness: 0.05
     - _SrcBlend: 1
-    - _StencilComp: 0
-    - _StencilFail: 0
-    - _StencilPass: 0
-    - _StencilRef: 0
+    - _StencilComp: 8
+    - _StencilFail: 2
+    - _StencilPass: 2
+    - _StencilRef: 1
     - _StencilZFail: 0
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
     - _AmbientColor: {r: 0, g: 0, b: 0, a: 0}
-    - _Color: {r: 0, g: 0.1511, b: 0.8, a: 1}
-    - _CubeColor0: {r: 1, g: 0.9310347, b: 0, a: 1}
-    - _CubeColor1: {r: 1, g: 0, b: 0, a: 1}
-    - _CubeColor2: {r: 0, g: 1, b: 0.8758622, a: 1}
-    - _CubeColor3: {r: 0.07586217, g: 1, b: 0, a: 1}
-    - _CubeColor4: {r: 0.034482956, g: 0, b: 1, a: 1}
-    - _CubeColor5: {r: 1, g: 0, b: 0.84827566, a: 1}
+    - _Color: {r: 0.1902, g: 0.1902, b: 0.1902, a: 1}
+    - _CubeColor0: {r: 1, g: 1, b: 1, a: 1}
+    - _CubeColor1: {r: 1, g: 1, b: 1, a: 1}
+    - _CubeColor2: {r: 1, g: 1, b: 1, a: 1}
+    - _CubeColor3: {r: 1, g: 1, b: 1, a: 1}
+    - _CubeColor4: {r: 1, g: 1, b: 1, a: 1}
+    - _CubeColor5: {r: 1, g: 1, b: 1, a: 1}
     - _CubeColorLocalSpaceMatrixRow0: {r: 1, g: 0, b: 0, a: 0}
     - _CubeColorLocalSpaceMatrixRow1: {r: 0, g: 1, b: 0, a: 0}
     - _CubeColorLocalSpaceMatrixRow2: {r: 0, g: 0, b: 1, a: 0}
-    - _DiffuseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _DiffuseColor: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Hatch1Color: {r: 0, g: 0, b: 0, a: 1}
     - _Hatch2Color: {r: 0, g: 0, b: 0, a: 1}
     - _Hatch3Color: {r: 0, g: 0, b: 0, a: 1}
-    - _LocalLightColor: {r: 0, g: 0, b: 0, a: 1}
+    - _LocalLightColor: {r: 0, g: 0, b: 0, a: 0}
     - _LocalLightVec: {r: 1, g: 0, b: 0, a: 0}
     - _OutlineColor: {r: 0.38235295, g: 0.38235295, b: 0.38235295, a: 1}
-    - _RimColor: {r: 1, g: 1, b: 1, a: 1}
+    - _PatchData: {r: 0, g: 0, b: 0, a: 0}
+    - _RimColor: {r: 0.35294116, g: 0.35294116, b: 0.35294116, a: 1}
     - _ShaderVersion: {r: 0, g: 9, b: 2, a: -1}
-    - _ShadowModColor: {r: 1, g: 1, b: 1, a: 1}
+    - _ShadowModColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}

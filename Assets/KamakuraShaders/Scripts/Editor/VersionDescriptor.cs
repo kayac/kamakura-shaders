@@ -1,5 +1,6 @@
 using UnityEngine;
-
+using UnityEditor;
+using UnityEngine.TestTools;
 
 namespace Kayac.VisualArts
 {
@@ -41,6 +42,46 @@ namespace Kayac.VisualArts
 		override public string ToString()
 		{
 			return stringDescriptor;
+		}
+
+		public static explicit operator int(VersionDescriptor v)
+		{
+			return (v._major << 14) + (v._minor << 7) + v._patch;
+		}
+
+		public static explicit operator VersionDescriptor(int n)
+		{
+			var v = ScriptableObject.CreateInstance<VersionDescriptor>();
+			v.SetVersion(n >> 14, (n >> 7) & ((1 << 7) - 1), n & ((1 << 7) - 1));
+			return v;
+		}
+
+		public static int ConvertToSingleInt(int major, int minor, int patch)
+		{
+			return (major << 14) + (minor << 7) + patch;
+		}
+
+		private static VersionDescriptor s_instance;
+
+		public static VersionDescriptor Instance
+		{
+			get
+			{
+				if (s_instance == null)
+				{
+					var verGuids = AssetDatabase.FindAssets("t:kayac.visualarts.versiondescriptor");
+					if (verGuids.Length == 1)
+					{
+						var path = AssetDatabase.GUIDToAssetPath(verGuids[0]);
+						s_instance = AssetDatabase.LoadAssetAtPath<VersionDescriptor>(path);
+					}
+					else
+					{
+						throw new System.InvalidProgramException("Could not find Kamakura Shaders Version Descriptor asset. Try to re-import the package.");
+					}
+				}
+				return s_instance;
+			}
 		}
 	}
 

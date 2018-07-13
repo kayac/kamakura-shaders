@@ -78,11 +78,11 @@
 	#endif
 
 		float3_t worldNormal = UnityObjectToWorldNormal(normal);
-		OUT.ambient = ShadeSH9(float4(worldNormal, 1.0)) * _AmbientUnitySHIntensity;
+		OUT.ambient = ShadeSH9(float4(worldNormal, 1.0));
 	#ifdef KAMAKURA_LOCALLIGHT_ON
 		OUT.localLightDir = normalize(mul(unity_WorldToObject, _LocalLightVec).xyz);
 	#endif
-		OUT.sampledCubeColor = GetCubeColor(normal);
+		OUT.sampledCubeColor = GetCubeColor(worldNormal);
 		OUT.viewDir = normalize(GetViewDir(vertex));
 		OUT.lightDir = normalize(ObjSpaceLightDir(vertex));
 
@@ -115,11 +115,12 @@
 		OUT.tangent = v.tangent;
 	#endif
 
+		float3_t worldNormal = UnityObjectToWorldNormal(normal);
 	#ifdef KAMAKURA_LOCALLIGHT_ON
 		OUT.localLightDir = normalize(mul(unity_WorldToObject, _LocalLightVec).xyz);
 	#endif
 
-		OUT.sampledCubeColor = GetCubeColor(normal);
+		OUT.sampledCubeColor = GetCubeColor(worldNormal);
 		float3_t lightDir = normalize(ObjSpaceLightDir(vertex));
 		OUT.viewDir = normalize(GetViewDir(vertex));
 		OUT.lightDir = lightDir;
@@ -192,7 +193,7 @@
 		fixed4 outColor = fixed4(diffuse, 1.0);
 
 	#ifdef KAMAKURA_RIM_ON
-		outColor.rgb = ApplyRim(outColor.rgb, IN.uvs, dot(normalDir, viewDir), sampledCubeColor);
+		outColor.rgb = ApplyRim(outColor.rgb, IN.uvs, dot(normalDir, viewDir), sampledCubeColor, IN.ambient);
 	#endif
 
 	#ifdef KAMAKURA_EMISSION_ON

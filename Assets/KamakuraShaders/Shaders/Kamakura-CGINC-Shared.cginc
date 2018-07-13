@@ -251,25 +251,21 @@ KAMAKURA_EXT_SharedExtraParams
 	uniform float3_t _CubeColorLocalSpaceMatrixRow2;
 	uniform float3_t _CubeColorLocalSpaceMatrixRow3;
 
-	fixed3 GetCubeColor(float3_t normal)
+	fixed3 GetCubeColor(float3_t worldNormal)
 	{
 		UNITY_BRANCH
 		if (_EnableCubeColor > 0.5)
 		{
-
-			normal = mul(normal, (float3x3)unity_WorldToObject);
-
 			UNITY_BRANCH
 			if (_CubeColorUseLocalSpace > 0.5)
 			{
 				float3x3 localSpaceMatrix = float3x3(_CubeColorLocalSpaceMatrixRow0, _CubeColorLocalSpaceMatrixRow1, _CubeColorLocalSpaceMatrixRow2);
-				normal = mul(normal, localSpaceMatrix);
+				worldNormal = normalize(mul(worldNormal, localSpaceMatrix));
 			}
-
-			float3_t normalSqr = normalize(normal * normal);
-			fixed3 color = normalSqr.x * ((normal.x >= 0) ? _CubeColor1 : _CubeColor3)
-				+ normalSqr.y * ((normal.y >= 0) ? _CubeColor0 : _CubeColor5)
-				+ normalSqr.z * ((normal.z >= 0) ? _CubeColor2 : _CubeColor4);
+			float3_t normalSqr = normalize(worldNormal * worldNormal);
+			fixed3 color = normalSqr.x * ((worldNormal.x >= 0) ? _CubeColor1 : _CubeColor3)
+				+ normalSqr.y * ((worldNormal.y >= 0) ? _CubeColor0 : _CubeColor5)
+				+ normalSqr.z * ((worldNormal.z >= 0) ? _CubeColor2 : _CubeColor4);
 			return saturate(color);
 		}
 		else
@@ -289,7 +285,7 @@ KAMAKURA_EXT_SharedExtraParams
 		fixed3 val;
 		val = (_AmbientUseCubeColor * cubeColor + (1 - _AmbientUseCubeColor) * _AmbientColor) * _AmbientIntensity;
 		val = val * _EnableCubeColor + (1 - _EnableCubeColor) * _AmbientColor * _AmbientIntensity;
-		val += shAmbient;
+		val += shAmbient * _AmbientUnitySHIntensity;
 		return val;
 	}
 
@@ -304,8 +300,9 @@ KAMAKURA_EXT_SharedExtraParams
 	uniform sampler2D _RimNoiseTex;
 	uniform float4_t _RimNoiseTex_ST;
 	uniform fixed _RimBlendingMode;
+	uniform fixed _RimUnitySHIntensity;
 
-	inline fixed3 ApplyRim(fixed3 outColor, float2_t uv, float_t nDotV, fixed3 sampledCubeColor)
+	inline fixed3 ApplyRim(fixed3 outColor, float2_t uv, float_t nDotV, fixed3 sampledCubeColor, fixed3 shAmbient)
 	{
 		fixed inverseRimSize = 1 - _RimSize;
 		float2_t rimUVs = TRANSFORM_TEX(uv, _RimNoiseTex);
@@ -315,6 +312,7 @@ KAMAKURA_EXT_SharedExtraParams
 		fixed3 rimColor = _RimColor;
 		rimColor = _RimUseCubeColor * sampledCubeColor + (1 - _RimUseCubeColor) * _RimColor;
 		rimColor = _EnableCubeColor * rimColor + (1 - _EnableCubeColor) * _RimColor;
+		rimColor += _RimUnitySHIntensity * shAmbient;
 
 		return _RimBlendingMode * lerp(outColor, rimColor, rimAmount) + (1 - _RimBlendingMode) * (rimAmount * rimColor + outColor);
 	}

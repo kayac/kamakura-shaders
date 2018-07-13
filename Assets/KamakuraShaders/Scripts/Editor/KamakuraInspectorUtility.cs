@@ -25,11 +25,14 @@ namespace Kayac.VisualArts
 		public static GUIStyle SmallBoxScopeStyle {
 			get {
 				if (smallBoxScopeStyle == null) {
-					smallBoxScopeStyle = new GUIStyle(EditorStyles.helpBox);
-					var p = smallBoxScopeStyle.padding;
-					p.right += 2;
-					p.top += 0;
-					p.left += 1;
+					smallBoxScopeStyle = new GUIStyle(EditorStyles.textField);
+					var p = new RectOffset();
+					p.right = 0;
+					p.top = 0;
+					p.left = 0;
+					p.bottom = 0;
+					smallBoxScopeStyle.margin = p;
+					smallBoxScopeStyle.padding = p;
 				}
 				return smallBoxScopeStyle;
 			}

@@ -4,7 +4,7 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Eyelash
   m_Shader: {fileID: 4800000, guid: d7730c2ef84884dacab76d02c257d58d, type: 3}
@@ -93,7 +93,8 @@ Material:
     - _AmbientIntensity: 0.5
     - _AmbientUnitySHIntensity: 0
     - _AmbientUseCubeColor: 0
-    - _BlendMode: 0
+    - _AutoAdjustRenderQueue: 0
+    - _BlendMode: 8
     - _BumpScale: 1
     - _CubeColorUseLocalSpace: 0
     - _CullMode: 2
@@ -106,6 +107,7 @@ Material:
     - _EnableEmission: 0
     - _EnableFilter: 0
     - _EnableHatch: 0
+    - _EnableLocalLight: 0
     - _EnableNormal: 0
     - _EnableOutline: 0
     - _EnableRim: 0
@@ -119,6 +121,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _HatchBlendMode: 0
     - _HatchIntensity: 0
     - _HatchOffset: 0
     - _HatchRangeStretch: 1
@@ -129,10 +132,11 @@ Material:
     - _LightRampOffset: 0
     - _LightRampPresetsOffset: 1
     - _LightRampUseGVertexColor: 0
-    - _LocalLightIntensity: 1
+    - _LocalLightIntensity: 0
     - _LocalLightVecAsMain: 0
     - _Metallic: 0
     - _Mode: 0
+    - _NormalIntensity: 1
     - _OcclusionStrength: 1
     - _OutlineBlendColorTexture: 1
     - _OutlineCameraDistanceAdaptRate: 1
@@ -140,12 +144,15 @@ Material:
     - _OutlineSize: 0.001
     - _OutlineUseRVertexColor: 0
     - _OutlineWriteZ: 1
+    - _OutlineZOffset: 0
     - _Parallax: 0.02
     - _RimBlendingMode: 0
     - _RimIntensity: 1
     - _RimSize: 0.5
     - _RimSoftness: 0.01
+    - _RimUnitySHIntensity: 0
     - _RimUseCubeColor: 0
+    - _ShadowModBlendMode: 0
     - _ShadowModIntensity: 1
     - _ShadowModUseFilter: 0
     - _SmoothnessTextureChannel: 0
@@ -178,9 +185,10 @@ Material:
     - _Hatch1Color: {r: 0, g: 0, b: 0, a: 1}
     - _Hatch2Color: {r: 0, g: 0, b: 0, a: 1}
     - _Hatch3Color: {r: 0, g: 0, b: 0, a: 1}
-    - _LocalLightColor: {r: 0, g: 0, b: 0, a: 1}
+    - _LocalLightColor: {r: 0, g: 0, b: 0, a: 0}
     - _LocalLightVec: {r: 1, g: 0, b: 0, a: 0}
     - _OutlineColor: {r: 0.38235295, g: 0.38235295, b: 0.38235295, a: 1}
+    - _PatchData: {r: 0, g: 0, b: 0, a: 0}
     - _RimColor: {r: 0.35294116, g: 0.35294116, b: 0.35294116, a: 1}
     - _ShaderVersion: {r: 0, g: 9, b: 2, a: -1}
     - _ShadowModColor: {r: 0, g: 0, b: 0, a: 1}

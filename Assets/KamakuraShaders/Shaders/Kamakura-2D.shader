@@ -2,16 +2,23 @@ Shader "Kayac/Kamakura2D"
 {
 	Properties
 	{
-		[Header(About)]
-		[KamakuraShaderVersion] _ShaderVersion ("_ShaderVersion", Vector) = (1, 0, 7, -1)
+//@ <About>
+		[Header(About)] [KSFlags(NonSelectable)] [KamakuraShaderVersion]_ShaderVersion ("_ShaderVersion", Vector) = (1, 0, 8, -1)
+		[HideInInspector] _PatchData ("_PatchData", Vector) = (0, 0, 0, 0)
+//@ </About>
 
+//@ <Basic_2D>
 		[Header(Basic)]
 		[NoScaleOffset] _MainTex ("Main Texture", 2D) = "black" {}
 		_BaseColor ("Base Color", Color) = (1, 1, 1, 1)
+//@ </Basic_2D>
 
+//@ <Advanced_2D>
 		[Header(Advanced)]
 		[KeywordEnum(Nothing, FilterParameters, OutlineColor, OutlineParameters)]  _VertexColorAs ("Use Vertex Color As", Float) = 0
+//@ </Advanced_2D>
 
+//@ <Outline_2D>
 		[Header(Outline)]
 		[Toggle] _EnableOutline("Enable", Float) = 0.0
 		[FormerlySerializedAs(_SDFTex)][NoScaleOffset] _OutlineSDFTex ("SDF Texture", 2D) = "white" {}
@@ -20,15 +27,16 @@ Shader "Kayac/Kamakura2D"
 		_OutlineSoftness ("Softness", Range(0.01, 1)) = 1
 		_OutlineOffset ("Offset", Range(0, 0.95)) = 0
 		_OutlineTextureEdgeSmoothness ("Texture Edge Smoothness", Range(0, 0.05)) = 0
+//@ </Outline_2D>
 
-
+//@ <Filter_2D>
 		[Header(Filter)]
 		[Toggle] _EnableFilter ("Enable", Float) = 0.0
 		_FilterHue("Hue", Range(-0.5,0.5)) = 0.0
 		_FilterSaturation("Saturation", Float) = 1.0
 		_FilterBrightness("Brightness", Float) = 1.0
 		_FilterColorModifier ("Color Modifier", Color) = (0,0,0,0)
-
+//@ </Filter_2D>
 	}
 
 	SubShader

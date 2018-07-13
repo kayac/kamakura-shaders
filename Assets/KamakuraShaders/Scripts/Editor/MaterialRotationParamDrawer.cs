@@ -18,8 +18,6 @@ namespace Kayac.VisualArts
 		// Draw the property inside the given rect
 		public override void OnGUI (Rect position, MaterialProperty prop, string label, MaterialEditor editor)
 		{
-			// Setup
-
 			EditorGUI.BeginChangeCheck();
 			editor.RangeProperty(position, prop, label);
 			// editor.ShaderProperty(prop, prop.displayName);

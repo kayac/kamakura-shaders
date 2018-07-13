@@ -11,12 +11,9 @@ namespace Kayac.VisualArts
 	public class MaterialKamakuraBlendModeDrawer : MaterialPropertyDrawer
 	{
 
-		static readonly int kSolidQueue = 2000;
-		static readonly int kAlphaTestQueue = 2450;
 		// static readonly int kTransparentQueue = 3000;
 
-		const string kDefaultSrcBlendKey = "_SrcBlend";
-		const string kDefaultDstBlendKey = "_DstBlend";
+		const string kAutoAdjustRenderQueueKey = "_AutoAdjustRenderQueue";
 		const float kDefaultEnumMask = (float)(KamakuraBlendMode.Opaque | KamakuraBlendMode.Transparent | KamakuraBlendMode.Additive);
 		const float kAdjustRenderQueue = 1.0f;
 
@@ -32,7 +29,12 @@ namespace Kayac.VisualArts
 		bool adjustRenderQueue;
 
 
-		public MaterialKamakuraBlendModeDrawer() : this(kDefaultSrcBlendKey, kDefaultDstBlendKey, (float)KamakuraBlendMode.Opaque, kDefaultEnumMask, kAdjustRenderQueue)
+		public MaterialKamakuraBlendModeDrawer() : this(
+			MaterialBlendModeUtils.DefaultSrcBlendKey,
+			MaterialBlendModeUtils.DefaultDstBlendKey,
+			(float)KamakuraBlendMode.Opaque,
+			kDefaultEnumMask,
+			kAdjustRenderQueue)
 		{
 		}
 
@@ -46,6 +48,11 @@ namespace Kayac.VisualArts
 			var labels = from num in enumValues select ((KamakuraBlendMode)num).ToString();
 			this.labels = labels.ToArray();
 			this.adjustRenderQueue = adjustRenderQueue != 0f;
+		}
+
+		public override float GetPropertyHeight(MaterialProperty prop, string label, MaterialEditor editor)
+		{
+			return base.GetPropertyHeight(prop, label, editor);
 		}
 
 		public override void OnGUI (Rect position, MaterialProperty prop, string label, MaterialEditor editor)
@@ -74,56 +81,70 @@ namespace Kayac.VisualArts
 			var mode = (KamakuraBlendMode)(int)prop.floatValue;
 			foreach (Material material in prop.targets)
 			{
-				switch(mode)
-				{
-					case KamakuraBlendMode.Default:
-					case KamakuraBlendMode.Opaque:
-					{
-						material.SetInt(srcBlendKey, (int)UnityEngine.Rendering.BlendMode.One);
-						material.SetInt(dstBlendKey, (int)UnityEngine.Rendering.BlendMode.Zero);
-						if (adjustRenderQueue)
-						{
-							material.SetOverrideTag("RenderType", "Opaque");
-							material.renderQueue = kSolidQueue;
-						}
-					}
-					break;
-					case KamakuraBlendMode.Additive:
-					{
-						material.SetInt(srcBlendKey, (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
-						material.SetInt(dstBlendKey, (int)UnityEngine.Rendering.BlendMode.One);
-						if (adjustRenderQueue)
-						{
-							material.SetOverrideTag("RenderType", "TransparentCutout");
-							material.renderQueue = kAlphaTestQueue;
-						}
-					}
-					break;
-					case KamakuraBlendMode.Transparent:
-					{
-						material.SetInt(srcBlendKey, (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
-						material.SetInt(dstBlendKey, (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
-						if (adjustRenderQueue)
-						{
-							material.SetOverrideTag("RenderType", "TransparentCutout");
-							material.renderQueue = kAlphaTestQueue;
-						}
-					}
-					break;
-					case KamakuraBlendMode.Multiply:
-					{
-						material.SetInt(srcBlendKey, (int)UnityEngine.Rendering.BlendMode.Zero);
-						material.SetInt(dstBlendKey, (int)UnityEngine.Rendering.BlendMode.SrcColor);
-						if (adjustRenderQueue)
-						{
-							material.SetOverrideTag("RenderType", "TransparentCutout");
-							material.renderQueue = kAlphaTestQueue;
-						}
-					}
-					break;
-				}
+				var adjustRenderQueue = this.adjustRenderQueue && (material.GetFloat(kAutoAdjustRenderQueueKey) != 0f);
+				MaterialBlendModeUtils.SetMaterialBlendMode(material, mode, adjustRenderQueue, srcBlendKey, dstBlendKey);
 			}
 		}
 	}
 
+	public static class MaterialBlendModeUtils
+	{
+		public const string DefaultSrcBlendKey = "_SrcBlend";
+		public const string DefaultDstBlendKey = "_DstBlend";
+
+		static readonly int kSolidQueue = 2000;
+		static readonly int kAlphaTestQueue = 2450;
+
+		public static void SetMaterialBlendMode(Material material, KamakuraBlendMode mode, bool adjustRenderQueue, string srcBlendKey = DefaultSrcBlendKey, string dstBlendKey = DefaultDstBlendKey)
+		{
+			switch (mode)
+			{
+				case KamakuraBlendMode.Default:
+				case KamakuraBlendMode.Opaque:
+				{
+					material.SetInt(srcBlendKey, (int)UnityEngine.Rendering.BlendMode.One);
+					material.SetInt(dstBlendKey, (int)UnityEngine.Rendering.BlendMode.Zero);
+					if (adjustRenderQueue)
+					{
+						material.SetOverrideTag("RenderType", "Opaque");
+						material.renderQueue = kSolidQueue;
+					}
+				}
+				break;
+				case KamakuraBlendMode.Additive:
+				{
+					material.SetInt(srcBlendKey, (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+					material.SetInt(dstBlendKey, (int)UnityEngine.Rendering.BlendMode.One);
+					if (adjustRenderQueue)
+					{
+						material.SetOverrideTag("RenderType", "TransparentCutout");
+						material.renderQueue = kAlphaTestQueue;
+					}
+				}
+				break;
+				case KamakuraBlendMode.Transparent:
+				{
+					material.SetInt(srcBlendKey, (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+					material.SetInt(dstBlendKey, (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+					if (adjustRenderQueue)
+					{
+						material.SetOverrideTag("RenderType", "TransparentCutout");
+						material.renderQueue = kAlphaTestQueue;
+					}
+				}
+				break;
+				case KamakuraBlendMode.Multiply:
+				{
+					material.SetInt(srcBlendKey, (int)UnityEngine.Rendering.BlendMode.Zero);
+					material.SetInt(dstBlendKey, (int)UnityEngine.Rendering.BlendMode.SrcColor);
+					if (adjustRenderQueue)
+					{
+						material.SetOverrideTag("RenderType", "TransparentCutout");
+						material.renderQueue = kAlphaTestQueue;
+					}
+				}
+				break;
+			}
+		}
+	}
 }

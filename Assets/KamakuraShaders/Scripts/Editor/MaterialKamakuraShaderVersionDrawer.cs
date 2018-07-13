@@ -9,24 +9,16 @@ namespace Kayac.VisualArts
 
 	public class MaterialKamakuraShaderVersionDrawer : MaterialPropertyDrawer
 	{
+		string _version;
 
-		public MaterialKamakuraShaderVersionDrawer()
-		{
-
+		public MaterialKamakuraShaderVersionDrawer() {
+			_version = "Shader Version: " +  VersionDescriptor.Instance;
 		}
 
-		// public override float GetPropertyHeight(MaterialProperty prop, string label, MaterialEditor editor)
-		// {
-		// 	return 30f;
-		// }
-
-		// Draw the property inside the given rect
 		public override void OnGUI (Rect position, MaterialProperty prop, String label, MaterialEditor editor)
 		{
 			var version = prop.vectorValue;
-			EditorGUI.LabelField(position, "Shader Version: " +  KamakuraShaderGUI.Version);
-			// position.y += 16f;
-			// EditorGUI.LabelField(position, "Material Version: " + (int)version.x + "." + (int)version.y + "." + (int)version.z);
+			EditorGUI.LabelField(position, _version);
 		}
 	}
 

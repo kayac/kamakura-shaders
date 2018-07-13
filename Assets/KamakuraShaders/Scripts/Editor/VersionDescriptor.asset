@@ -13,5 +13,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _major: 1
   _minor: 0
-  _patch: 7
-  _stringDescriptor: 1.0.7
+  _patch: 8
+  _stringDescriptor: 1.0.8

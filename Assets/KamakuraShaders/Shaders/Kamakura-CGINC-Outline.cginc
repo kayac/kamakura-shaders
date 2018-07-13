@@ -43,7 +43,7 @@ v2f_outline OutlineVert(appdata_outline v)
 
 		clipNormal.x *= _ScreenParams.y / _ScreenParams.x;
 
-		#if defined(SHADER_API_D3D11) || defined(SHADER_API_D3D11_9X) || defined(SHADER_API_D3D9)
+		#if defined(SHADER_API_METAL) || defined(SHADER_API_D3D11) || defined(SHADER_API_D3D11_9X) || defined(SHADER_API_D3D9)
 			clipNormal.y *= -1;
 		#endif
 

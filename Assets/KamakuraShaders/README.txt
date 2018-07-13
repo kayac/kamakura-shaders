@@ -1,7 +1,7 @@
-KAMAKURA SHADERS v1.0.7
+KAMAKURA SHADERS v1.0.8
 =======================
 
-Updated 2018/5/17
+Updated 2018/7/12
 
 Kamakura Shaders is a collection of shaders and components focusing on Non-Photorealistic
 Rendering for Unity with a bunch of features and adjustable parameters in a user-friendly
@@ -11,8 +11,6 @@ interface.
 NOTES
 -----
 - Target Environment: Unity 5.6.x ~ Unity 2017.4, Unity 2018.2.0b3
-- It will not compile on Unity 2018.1.0f2. If you are using that version,
-  please use Kamakura Shaders v1.0.5 instead
 - Graphics API DirectX9: Screen Space Hatch feature is not functioning on this graphics API
 - These shaders has not been tested yet on console platforms
   (PS4 / WiiU / Switch / Xbox One)
@@ -20,6 +18,22 @@ NOTES
 
 CHANGELOG
 ---------
+
+### v1.0.8
+- Now Rim can use color from GI
+- A new patch tool to fix materials with invalid / obsolete parameters that can be accessed in
+  "Kayac/Kamakura Shaders/Check For Patch" menu
+- LocalLight and CubeColorLocalSpaceRoot component now use MaterialPropertyBlock so it does
+  not make changes to Material assets. Due to this change, some materials may need to be
+  updated using the new patch tool
+- Improved Copy-Paste function: select all properties of a feature by pressing alt-key when
+  selecting
+- Fixed a problem where CubeColor outputs inaccurate color for Ambient and Rim on certain
+  devices
+- Fixed disappearing Outline bug in a certain case
+- Removed Outline Write Depth parameter so Outline will always write depth buffer
+- Added Auto Adjust Render Queue flag property to avoid confusion caused by the implicit
+  auto adjustment of render queue when Blend Mode is changed
 
 ### v1.0.7
 - Updated Dreamy Character model
@@ -30,8 +44,7 @@ CHANGELOG
 
 ### v1.0.5
 - Point light and spot light attenuation is temporarily disabled due to a bug in
-  Unity 2018.1.0f2. If you are not using Unity 2018.1, please use Kamakura
-  Shaders v1.0.4 instead
+  Unity 2018.1.0f2
 
 ### v1.0.4
 - Fixed normal seams problem
